@@ -65,7 +65,7 @@ Desarrollar un sistema de información web bajo arquitectura MVC con PHP 8+, MyS
 
 ## 3. REQUISITOS DEL SOFTWARE (ISO/IEC/IEEE 29148:2018)
 
-### 3.1 Requisitos Funcionales (RF) - Mínimo 12
+### 3.1 Requisitos Funcionales (RF)
 
 | ID | Nombre del Requisito | Descripción Funcional | Prioridad | Criterio de Aceptación |
 | :---: | :--- | :--- | :---: | :--- |
@@ -84,7 +84,7 @@ Desarrollar un sistema de información web bajo arquitectura MVC con PHP 8+, MyS
 
 ---
 
-### 3.2 Requisitos No Funcionales (RNF) - Mínimo 6
+### 3.2 Requisitos No Funcionales (RNF)
 
 | ID | Parámetro | Requisito No Funcional | Criterio de Medición |
 | :---: | :--- | :--- | :--- |
@@ -97,7 +97,7 @@ Desarrollar un sistema de información web bajo arquitectura MVC con PHP 8+, MyS
 
 ---
 
-## 4. HISTORIAS DE USUARIO (HU) - Mínimo 10
+## 4. HISTORIAS DE USUARIO (HU)
 
 | ID | Historia de Usuario (Como / Quiero / Para) | Criterios de Aceptación (Dado / Cuando / Entonces) | Prioridad |
 | :---: | :--- | :--- | :---: |
@@ -111,10 +111,12 @@ Desarrollar un sistema de información web bajo arquitectura MVC con PHP 8+, MyS
 | **HU-08** | **Como** Administrador, **quiero** consultar el ranking de los productos más vendidos **para** planificar las compras semanales con proveedores de café y repostería. | **Dado** un rango de fechas (ej. último mes), **cuando** genero el reporte Top Sellers, **entonces** el sistema lista los artículos más vendidos con gráficos de rotación. | **Alta (Innovación)** |
 | **HU-09** | **Como** Administrador, **quiero** consultar el reporte financiero de desperdicios **para** identificar en qué área (caducidad o preparación) se está perdiendo más dinero. | **Dado** el módulo de mermas, **cuando** filtro por mes, **entonces** visualizo el total de dinero perdido ($) y el porcentaje atribuible a cada causa. | **Alta (Innovación)** |
 | **HU-10** | **Como** Administrador / Cajero, **quiero** realizar el cierre de caja diario **para** verificar que el dinero recibido en efectivo y datáfono cuadre con las ventas registradas. | **Dado** el final del turno, **cuando** selecciono "Cerrar Caja", **entonces** el sistema totaliza los ingresos por método de pago y bloquea modificaciones en ese turno. | Alta |
+| **HU-11** | **Como** Mesero, **quiero** transferir la orden activa de una mesa a otra cuando un cliente decida reubicarse de lugar en el salón **para** mantener el historial de consumos y la cuenta unificada sin tener que reingresar los pedidos. | **Dado** una mesa origen con consumos pendientes y una mesa destino libre, **cuando** selecciono la opción "Cambiar Mesa", **entonces** todos los pedidos se trasladan automáticamente a la nueva mesa y la anterior queda disponible. | Media |
+| **HU-12** | **Como** Administrador, **quiero** configurar alertas visuales de caducidad próxima en insumos perecederos **para** promoverlos con ofertas especiales antes de que se conviertan en desperdicio o merma. | **Dado** un producto con fecha de vencimiento menor a 48 horas, **cuando** ingreso al panel de inventario, **entonces** el sistema lo resalta en color naranja y genera una notificación de acción preventiva. | **Alta (Innovación)** |
 
 ---
 
-## 5. REGLAS DE NEGOCIO (RN) - Mínimo 3
+## 5. REGLAS DE NEGOCIO (RN)
 
 ### RN-01: Control de Disponibilidad e Inhabilitación de Ventas
 > **Descripción:** Ningún producto o ingrediente con stock igual a cero (`stock <= 0`) puede ser añadido a una nueva comanda. El sistema debe inhabilitar la opción en la interfaz del mesero y emitir una alerta sonora/visual de "Producto Agotado", impidiendo discrepancias con el cliente en mesa.
@@ -124,6 +126,12 @@ Desarrollar un sistema de información web bajo arquitectura MVC con PHP 8+, MyS
 
 ### RN-03: Autorización y Costeo Obligatorio de Mermas
 > **Descripción:** Todo registro de merma o desperdicio debe tipificarse obligatoriamente bajo una de las tres causales autorizadas: `Caducidad`, `Error de Preparación` o `Accidente/Deterioro`. El sistema calculará de forma automática el valor económico de la pérdida multiplicando la cantidad desechada por el costo unitario de compra (`perdida_total = cantidad * costo_unitario`), impactando directamente el estado de pérdidas operativas del turno.
+
+### RN-04: Bloqueo de Modificación de Comandas en Estado Despachado
+> **Descripción:** Una vez que el barista o cocinero marca un producto de la comanda como `Despachado` o `En Preparación`, dicho ítem no puede ser eliminado ni modificado por el mesero desde el salón. Cualquier anulación de un producto en este estado requiere autorización del `Administrador` y genera automáticamente una merma operativa por costo de preparación fallida o producto devuelto.
+
+### RN-05: Inmutabilidad del Arqueo y Cierre de Caja
+> **Descripción:** Una vez que el `Administrador` o cajero ejecuta el cierre diario de caja de un turno, todos los registros de ventas, consumos y pagos asociados a esa jornada quedan en estado de solo lectura (bloqueo de edición y eliminación). Cualquier ajuste posterior debe registrarse como un movimiento extraordinario de ajuste contable debidamente auditado con fecha, hora y usuario responsable.
 
 ---
 
@@ -146,6 +154,8 @@ flowchart LR
         UC8(["Analizar Productos Más Vendidos (Top Sellers)"])
         UC9(["Registrar Mermas y Desperdicios"])
         UC10(["Consultar Reporte Financiero de Pérdidas"])
+        UC11(["Transferir Consumos entre Mesas"])
+        UC12(["Monitorear Alertas de Próxima Caducidad"])
     end
 
     Admin --> UC1
@@ -154,15 +164,18 @@ flowchart LR
     Admin --> UC8
     Admin --> UC9
     Admin --> UC10
+    Admin --> UC12
 
     Mesero --> UC1
     Mesero --> UC3
     Mesero --> UC4
     Mesero --> UC6
+    Mesero --> UC11
 
     Barista --> UC1
     Barista --> UC5
     Barista --> UC9
+    Barista --> UC12
 ```
 
 ---
@@ -170,4 +183,4 @@ flowchart LR
 ## 7. EVIDENCIAS ASOCIADAS
 * **Documento versionado en Git:** `docs/requisitos.md`.
 * **Estándar aplicado:** ISO/IEC/IEEE 29148:2018 (Ingeniería de Requisitos).
-* **Commit asociado:** `docs: agregar especificacion de requisitos segun norma ISO/IEC/IEEE 29148:2018`.
+* **Commit asociado:** `docs: ampliar requisitos con 12 HU y 5 reglas de negocio para Cat-fe`.
