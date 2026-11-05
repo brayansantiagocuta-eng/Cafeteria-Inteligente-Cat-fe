@@ -1,0 +1,50 @@
+@startuml CasosDeUso_Catfe
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam handwritten false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+actor "Administrador" as Admin
+actor "Mesero" as Mesero
+actor "Barista / Cocina" as Barista
+
+rectangle "Sistema Inteligente Cat-fé (Star-Light)" {
+    usecase "UC-01: Iniciar Sesión y Control de Roles" as UC1
+    usecase "UC-02: Gestionar Catálogo e Inventario" as UC2
+    usecase "UC-03: Gestionar Mesas y Estados" as UC3
+    usecase "UC-04: Registrar Comanda Digital" as UC4
+    usecase "UC-05: Transferir Consumos entre Mesas" as UC5
+    usecase "UC-06: Atender y Despachar Pedidos" as UC6
+    usecase "UC-07: Generar Precuenta y Cobro de Mesa" as UC7
+    usecase "UC-08: Realizar Cierre y Arqueo de Caja" as UC8
+    usecase "UC-09: Analizar Productos Más Vendidos\n(Top Sellers)" as UC9
+    usecase "UC-10: Registrar Mermas y Desperdicios" as UC10
+    usecase "UC-11: Consultar Reporte Financiero de Mermas" as UC11
+    usecase "UC-12: Monitorear Alertas de Próxima Caducidad" as UC12
+}
+
+' Relaciones Administrador
+Admin --> UC1
+Admin --> UC2
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+
+' Relaciones Mesero
+Mesero --> UC1
+Mesero --> UC3
+Mesero --> UC4
+Mesero --> UC5
+Mesero --> UC7
+
+' Relaciones Barista
+Barista --> UC1
+Barista --> UC6
+Barista --> UC10
+Barista --> UC12
+
+@enduml

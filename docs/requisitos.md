@@ -135,52 +135,13 @@ Desarrollar un sistema de información web bajo arquitectura MVC con PHP 8+, MyS
 
 ---
 
-## 6. DIAGRAMA DE CASOS DE USO (DESCRIPCIÓN TEXTUAL Y RELACIONES)
-
-```mermaid
-flowchart LR
-    Admin["Administrador"]
-    Mesero["Mesero"]
-    Barista["Barista / Cocina"]
-
-    subgraph CatFe ["Sistema Inteligente Cat-fé"]
-        UC1(["Iniciar Sesión / Roles"])
-        UC2(["Gestionar Catálogo e Inventario"])
-        UC3(["Gestionar Mesas y Estados"])
-        UC4(["Registrar Comanda Digital"])
-        UC5(["Atender y Despachar Pedidos"])
-        UC6(["Generar Precuenta y Cobro"])
-        UC7(["Realizar Cierre de Caja"])
-        UC8(["Analizar Productos Más Vendidos (Top Sellers)"])
-        UC9(["Registrar Mermas y Desperdicios"])
-        UC10(["Consultar Reporte Financiero de Pérdidas"])
-        UC11(["Transferir Consumos entre Mesas"])
-        UC12(["Monitorear Alertas de Próxima Caducidad"])
-    end
-
-    Admin --> UC1
-    Admin --> UC2
-    Admin --> UC7
-    Admin --> UC8
-    Admin --> UC9
-    Admin --> UC10
-    Admin --> UC12
-
-    Mesero --> UC1
-    Mesero --> UC3
-    Mesero --> UC4
-    Mesero --> UC6
-    Mesero --> UC11
-
-    Barista --> UC1
-    Barista --> UC5
-    Barista --> UC9
-    Barista --> UC12
-```
+## 6. MODELADO DE CASOS DE USO
+El diagrama formal de casos de uso ha sido desacoplado y estructurado en su archivo fuente en PlantUML (`docs/casos_uso.puml`), el cual modela las interacciones de los tres actores (`Administrador`, `Mesero`, `Barista/Cocina`) con los 12 casos de uso del sistema.
 
 ---
 
 ## 7. EVIDENCIAS ASOCIADAS
 * **Documento versionado en Git:** `docs/requisitos.md`.
+* **Archivo de modelado PlantUML:** `docs/casos_uso.puml`.
 * **Estándar aplicado:** ISO/IEC/IEEE 29148:2018 (Ingeniería de Requisitos).
-* **Commit asociado:** `docs: ampliar requisitos con 12 HU y 5 reglas de negocio para Cat-fe`.
+* **Commit asociado:** `docs: desacoplar diagrama y generar archivo formal PlantUML`.
