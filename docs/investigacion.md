@@ -1,6 +1,6 @@
 # SESIÓN 1: INVESTIGACIÓN DEL NEGOCIO
-## PROYECTO: CAFETERÍA INTELIGENTE "CAT-FÉ"
-## SISTEMA DE INFORMACIÓN: "STAR-LIGHT"
+## ESTABLECIMIENTO: CAFETERÍA "STAR-LIGHT"
+## SISTEMA DE INFORMACIÓN: "CAT-FÉ"
 **Tecnólogo en Análisis y Desarrollo de Software (ADSO) - SENA**  
 **Aprendiz:** Brayan Santiago Cuta  
 **Instructora:** Joan Castillo Celis  
@@ -9,51 +9,51 @@
 ---
 
 ## 1. DESCRIPCIÓN DEL NEGOCIO INVESTIGADO
-* **Nombre comercial del establecimiento:** Cat-fé (Cafetería Temática)
-* **Nombre oficial del sistema web:** Star-Light
-* **Sector:** Gastronomía y servicios temáticos de recreación / bienestar felino.
-* **Modelo operativo:** Servicio a la mesa, pedidos en barra y modalidad para llevar en un entorno donde conviven clientes y gatos rescatados en proceso de adopción.
+* **Nombre comercial del establecimiento:** Star-Light (Cafetería de Especialidad y Experiencia)
+* **Nombre del sistema de información web:** Cat-fé
+* **Sector:** Gastronomía, café de especialidad, repostería artesanal y experiencias de servicio.
+* **Modelo operativo:** Servicio a la mesa, pedidos directos en barra y pedidos para llevar (*takeaway*).
 * **Actores principales del negocio:**
-  1. **Administrador / Dueño:** Responsable de abastecimiento de insumos, fijación de precios, supervisión de personal y análisis de costos/utilidades mediante Star-Light.
-  2. **Barista / Personal de Cocina:** Prepara bebidas y alimentos, controla existencias de ingredientes inmediatos y registra insumos vencidos o mermas por preparación.
-  3. **Mesero / Cajero:** Atiende comensales, toma órdenes en mesa, genera cobros e informa disponibilidad de productos en tiempo real.
-  4. **Cliente final:** Consume productos, interactúa con el espacio y requiere agilidad en la atención y precisión en su cuenta.
+  1. **Administrador / Propietario:** Gestiona compras, proveedores, costos de insumos, precios de venta, control de pérdidas y supervisión general mediante el sistema Cat-fé.
+  2. **Barista / Personal de Cocina:** Elabora bebidas de café de especialidad y alimentos, vigila la frescura de insumos perecederos y registra mermas por preparación o caducidad.
+  3. **Mesero / Cajero:** Atiende a los clientes en mesa o mostrador, genera órdenes, procesa pagos y consulta disponibilidad en tiempo real.
+  4. **Cliente final:** Disfruta del menú y del ambiente, buscando una atención rápida, pedidos correctos y cobros transparentes.
 
 ---
 
 ## 2. SITUACIÓN ACTUAL Y PROBLEMÁTICA OBSERVADA
-Actualmente, el establecimiento Cat-fé gestiona los pedidos mediante libretas físicas (comandas manuales) y una caja registradora convencional. Este método manual presenta las siguientes fallas críticas:
-1. **Pérdida de inventario y mermas invisibles:** No se cuantifica el producto descartado por fecha de caducidad (leches vegetales, repostería artesanal con vida útil corta) ni los desperdicios ocurridos durante la preparación en barra.
-2. **Cálculo impreciso de la demanda:** Las compras semanales a proveedores se realizan de forma empírica o intuitiva, provocando sobrestock de productos de baja rotación y desabastecimiento de los productos más vendidos (*Top Sellers*).
-3. **Falta de visibilidad de mesas en tiempo real:** Retrasos al verificar si una mesa ya fue atendida, si la cuenta fue liquidada o si está disponible para nuevos clientes.
+En cafeterías de estilo moderno y de especialidad como **Star-Light**, la operación manual en horas pico genera fricciones comunes del sector:
+1. **Desperdicio de insumos perecederos (mermas):** Las leches especiales (almendra, avena, deslactosada), la repostería del día y las extracciones de café mal calibradas generan pérdidas diarias que casi nunca se miden en dinero ni por causa.
+2. **Falta de visibilidad de los productos estrella (*Top Sellers*):** Las compras de café en grano e ingredientes se realizan de manera intuitiva, sin reportes exactos de qué productos rotan más por día o temporada.
+3. **Cuellos de botella en servicio y mesas:** Comandas manuales en papel que se extravían o demoran entre salón y barra, generando demoras en la preparación y en la entrega de la cuenta.
 
 ---
 
-## 3. INSTRUMENTO 1: ENTREVISTA APLICADA AL ADMINISTRADOR Y EQUIPO
-* **Entrevistado:** Gerente operativo y Administrador de Cat-fé.
-* **Objetivo:** Identificar los cuellos de botella en la toma de pedidos, gestión de mermas e inventario para modelar el sistema **Star-Light**.
+## 3. INSTRUMENTO 1: ENTREVISTA AL PERSONAL ADMINISTRATIVO Y OPERATIVO
+* **Entrevistado:** Administrador y Barista Principal de Star-Light.
+* **Objetivo:** Identificar las necesidades operativas de la cafetería para el diseño de Cat-fé.
 
-### Preguntas y Respuestas Tabuladas:
-1. **¿Cómo registra actualmente las órdenes y el estado de las mesas?**  
-   * *Respuesta:* En comandas de papel autocopiante. El mesero lleva la copia a la barra de café y la original queda en caja para la cuenta final.
-2. **¿Qué errores o inconvenientes se presentan con mayor frecuencia en ese proceso?**  
-   * *Respuesta:* Letra ilegible, pedidos duplicados, demoras cuando hay salón lleno y extravío de comandas al momento de cobrar.
-3. **¿Cómo controlan actualmente los productos e insumos que se vencen o se dañan (mermas/desperdicios)?**  
-   * *Respuesta:* Se revisan a ojo al final del turno y se tiran a la basura sin registrar la causa exacta ni el valor monetario perdido.
-4. **¿Saben con exactitud matemática cuáles son los 5 productos que dejan mayor ganancia y mayor rotación cada mes?**  
-   * *Respuesta:* No con exactitud; nos guiamos por la intuición de lo que más pide la gente, pero no tenemos métricas concretas ni gráficas por franjas horarias.
-5. **¿Qué ocurre cuando un cliente solicita un producto que se agotó durante el turno?**  
-   * *Respuesta:* El mesero debe ir hasta la barra a preguntar, interrumpiendo al barista y generando una mala experiencia para el cliente.
-6. **¿Cuánto tiempo promedio toma generar el cierre de caja diario y el balance de ventas?**  
-   * *Respuesta:* Entre 45 minutos y 1 hora, sumando tirillas y cuadrando efectivo manualmente.
-7. **¿Qué informes o reportes considera indispensables en el sistema Star-Light?**  
-   * *Respuesta:* Un ranking de productos más y menos vendidos, un reporte de pérdidas por desperdicio y un consolidado diario de ventas por medio de pago.
-8. **¿Qué impacto tendría para el negocio reducir el desperdicio de insumos en un 15% o 20%?**  
-   * *Respuesta:* Significativo. La repostería artesanal tiene vida útil corta de 48 a 72 horas; si controlamos el lote y la merma, el margen neto aumentaría notablemente.
-9. **¿El personal cuenta con dispositivos (móvil, tablet o PC) disponibles para registrar información durante el servicio?**  
-   * *Respuesta:* Sí, contamos con una tablet en mostrador/caja y el personal puede acceder desde terminales ligeras conectadas a la red local.
-10. **¿Qué requisitos de seguridad o roles considera necesarios en el sistema?**  
-    * *Respuesta:* Que solo el administrador pueda editar precios, borrar ventas o autorizar bajas de mermas costosas; los meseros solo deben tomar pedidos y consultar disponibilidad.
+### Preguntas y Respuestas:
+1. **¿Cómo toman y transmiten las comandas actualmente?**  
+   * *Respuesta:* En papel autocopiante. El mesero anota y lleva la copia física a la barra.
+2. **¿Qué problemas se presentan con este método en horas de alta afluencia?**  
+   * *Respuesta:* Órdenes en espera desordenadas, pedidos duplicados o demoras cuando el personal de barra no entiende la letra del mesero.
+3. **¿Cómo controlan actualmente los alimentos y bebidas que se dañan o caducan?**  
+   * *Respuesta:* Al final de la jornada se desecha lo que no sirva, pero no se lleva un registro contable de cuánto dinero representó esa merma.
+4. **¿Saben con exactitud qué bebidas o postres generan el 80% de los ingresos de la semana?**  
+   * *Respuesta:* Tenemos una idea general, pero no contamos con un gráfico o reporte automatizado que nos indique la rotación exacta.
+5. **¿Qué ocurre si se agota un insumo (por ejemplo, leche de avena o un postre de temporada) durante el servicio?**  
+   * *Respuesta:* El mesero se entera después de haber tomado la orden en la mesa, teniendo que volver a disculparse con el cliente.
+6. **¿Cuánto tiempo promedio toma el cuadre de caja y ventas al cierre?**  
+   * *Respuesta:* Entre 45 y 60 minutos revisando comandas de papel y comprobantes de datáfono.
+7. **¿Qué reportes considera indispensables en el sistema Cat-fé?**  
+   * *Respuesta:* Ranking de productos más vendidos, reporte de mermas/desperdicios por motivo y costo, y balance de ventas por fecha y método de pago.
+8. **¿Qué impacto tendría reducir el desperdicio de insumos un 15% o 20%?**  
+   * *Respuesta:* Aumentaría de inmediato el margen neto de ganancia mensual, ya que la materia prima de cafetería de especialidad es costosa.
+9. **¿Disponen de dispositivos para implementar el sistema?**  
+   * *Respuesta:* Sí, contamos con computador en caja y conectividad para usar tablets o celulares para la toma de comandas.
+10. **¿Qué permisos de usuario son requeridos?**  
+    * *Respuesta:* Acceso total para administrador; meseros solo con permisos de tomar comandas y ver mesas; cocina/barra para cambiar estados de preparación.
 
 ---
 
@@ -61,74 +61,62 @@ Actualmente, el establecimiento Cat-fé gestiona los pedidos mediante libretas f
 
 | Criterio | Registro de Campo |
 | :--- | :--- |
-| **Fecha y Horario:** | Sábado, 4:00 p. m. a 6:30 p. m. (Hora pico) |
-| **Lugar:** | Salón principal y barra de preparación de bebidas de Cat-fé |
-| **Actores observados:** | 1 Administrador, 2 Baristas/Cocineros, 2 Meseros, 28 Clientes |
-| **Actividad 1: Toma de comandas** | **Problema detectado:** El mesero tarda 4 minutos anotando a mano y luego 2 minutos desplazándose hasta la barra.  <br>**Oportunidad:** Pedidos digitales inmediatos por número de mesa mediante Star-Light que se reflejen al instante en pantalla de barra. |
-| **Actividad 2: Preparación y mermas** | **Problema detectado:** Se descartaron 3 vasos de café por preparación errónea y una porción de cheesecake por desmoronamiento; ninguno fue anotado. <br>**Oportunidad:** Módulo de registro rápido de merma (motivo: error barista, caída, producto vencido). |
-| **Actividad 3: Cobro y cierre** | **Problema detectado:** Se generó fila en caja de 3 mesas simultáneas esperando cálculo manual de la cuenta y validación de consumos. <br>**Oportunidad:** Precuenta automática por mesa en un solo clic con desglose de ítems e impuestos. |
+| **Fecha y Horario:** | Sábado, 4:00 p. m. a 6:30 p. m. (Hora de mayor demanda) |
+| **Lugar:** | Cafetería Star-Light (Salón y Barra de café) |
+| **Actores observados:** | 1 Administrador, 2 Baristas, 2 Meseros, 28 Clientes |
+| **Fase 1: Toma de comandas** | **Problema:** El mesero tarda varios minutos anotando en libreta y desplazándose hasta la barra. <br>**Oportunidad:** Comanda digital por mesa que llega inmediatamente a la pantalla de barra mediante Cat-fé. |
+| **Fase 2: Preparación y mermas** | **Problema:** Descarte de preparaciones fallidas y productos vencidos sin registro alguno. <br>**Oportunidad:** Módulo de registro de desperdicios (motivos: error de receta, caducidad, accidente). |
+| **Fase 3: Cobro y cierre de mesa** | **Problema:** Congestión en el mostrador para calcular manualmente consumos y dividir cuentas. <br>**Oportunidad:** Precuenta automática e inmediata por número de mesa. |
 
 ---
 
-## 5. INSTRUMENTO 3: ENCUESTA APLICADA A CLIENTES Y USUARIOS
-* **Muestra:** 25 clientes encuestados.  
-* **Objetivo:** Medir la percepción sobre tiempos de atención, disponibilidad de productos, transparencia en cobros e interés en la sostenibilidad y analítica de mermas.
+## 5. INSTRUMENTO 3: ENCUESTA A CLIENTES DE CAFETERÍAS DE ESPECIALIDAD
+* **Población objetivo:** Clientes y consumidores frecuentes de cafeterías de especialidad y temáticas.
+* **Muestra:** 25 encuestados.
+* **Propósito:** Evaluar la experiencia del cliente y respaldar las funcionalidades del sistema **Cat-fé** (gestión ágil de mesas, catálogo de más vendidos y cultura de cero desperdicio).
 
-### Cuestionario, Opciones y Tabulación de Resultados:
+### Cuestionario, Respuestas y Tabulación de Resultados:
 
-#### Pregunta 1: Al visitar Cat-fé, ¿cómo percibe el tiempo de espera desde que solicita su pedido al mesero hasta que es recibido en la mesa?
-* A) Muy rápido (menos de 5 minutos): **12% (3 clientes)**
-* B) Aceptable pero con demoras en horas concurridas (10-15 min): **44% (11 clientes)**
-* C) Lento y con retrasos perceptibles (más de 15 min): **44% (11 clientes)**
-> **Justificación para el sistema:** El 88% de los comensales percibe demoras en horas pico, lo que respalda la necesidad de comandas digitales inmediatas en Star-Light.
+#### Pregunta 1: Al visitar una cafetería en horarios de alta concurrencia, ¿cómo califica habitualmente el tiempo de espera desde que pide su orden hasta que la recibe en la mesa?
+* A) Rápido y sin contratiempos (menos de 5 minutos): **12% (3 personas)**
+* B) Aceptable, pero con demoras evidentes en horas pico (10 a 15 minutos): **48% (12 personas)**
+* C) Lento y con esperas excesivas (más de 15 minutos): **40% (10 personas)**
+> **Justificación técnica:** El 88% de los comensales percibe demoras en horas pico, evidenciando la necesidad de comandas digitales en tiempo real con Cat-fé.
 
-#### Pregunta 2: ¿Le ha ocurrido que al ordenar un café o postre de la carta le informen minutos después que dicho producto ya está agotado?
-* A) Sí, me ha sucedido al menos una vez: **68% (17 clientes)**
-* B) Rara vez: **24% (6 clientes)**
-* C) No, siempre estuvo disponible: **8% (2 clientes)**
-> **Justificación para el sistema:** El 92% ha vivido la incomodidad de pedir productos agotados, demostrando la necesidad de inventario sincronizado en tiempo real.
+#### Pregunta 2: ¿Con qué frecuencia le ocurre que solicita un producto de la carta (un café especial, postre o ingrediente particular) y el mesero le informa minutos después que ya no está disponible?
+* A) Con frecuencia o me ha sucedido al menos una vez: **72% (18 personas)**
+* B) Rara vez: **20% (5 personas)**
+* C) Nunca me ha pasado: **8% (2 personas)**
+> **Justificación técnica:** Demuestra que la falta de sincronización de inventario en vivo perjudica la experiencia del cliente. Cat-fé bloqueará automáticamente artículos sin stock.
 
-#### Pregunta 3: ¿Le gustaría que la cafetería cuente con una pantalla o menú digital donde pueda consultar fácilmente los productos más populares y recomendados de la semana?
-* A) Sí, me ayudaría a decidir más rápido y probar lo mejor: **84% (21 clientes)**
-* B) Me es indiferente: **16% (4 clientes)**
-* C) No, prefiero solo la carta tradicional en papel: **0% (0 clientes)**
-> **Justificación para el sistema:** Justifica directamente el módulo de **Análisis de Productos Más Vendidos** (*Top Sellers*), impulsando las ventas sugeridas.
+#### Pregunta 3: Al ordenar en una cafetería, ¿le resultaría útil contar con recomendaciones visibles o una sección destacada con los "Productos Más Populares / Más Vendidos" para facilitar su elección?
+* A) Sí, me orienta para probar las especialidades más reconocidas y decidir más rápido: **84% (21 personas)**
+* B) Me es indiferente: **16% (4 personas)**
+* C) No, prefiero revisar todo el menú por mi cuenta: **0% (0 personas)**
+> **Justificación técnica:** Respalda directamente la funcionalidad innovadora de **Análisis de Productos Más Vendidos** en Cat-fé.
 
-#### Pregunta 4: ¿Qué tan importante considera que su cuenta o comprobante de pago detrolle claramente cada producto, adición y precio de forma automatizada y sin enmendaduras manuales?
-* A) Muy importante, brinda seguridad y transparencia: **92% (23 clientes)**
-* B) Poco importante: **8% (2 clientes)**
-* C) No me interesa: **0% (0 clientes)**
-> **Justificación para el sistema:** Demuestra la necesidad de liquidación automática de mesas y facturación digital en Star-Light.
+#### Pregunta 4: ¿Qué tan importante considera que su cuenta o factura detalle de forma clara, automática y sin tachones cada consumo, bebida, adición o modificación solicitada?
+* A) Muy importante, brinda total claridad y confianza en lo que pago: **92% (23 personas)**
+* B) Poco importante mientras el valor total parezca razonable: **8% (2 personas)**
+* C) No le doy importancia: **0% (0 personas)**
+> **Justificación técnica:** Fundamenta el módulo de precuenta automatizada y facturación sin enmendaduras manuales.
 
-#### Pregunta 5: ¿Qué opinión le merece que la cafetería implemente un sistema tecnológico para controlar el desperdicio de alimentos e insumos (mermas), apoyando el consumo responsable y sostenible?
-* A) Excelente iniciativa, demuestra compromiso con la calidad y el medio ambiente: **88% (22 clientes)**
-* B) Positivo, aunque me interesa más el precio: **12% (3 clientes)**
-* C) No le veo relevancia: **0% (0 clientes)**
-> **Justificación para el sistema:** Valida social y comercialmente la funcionalidad innovadora de **Control y Cuantificación de Desperdicios / Mermas**.
+#### Pregunta 5: Las cafeterías manejan insumos frescos (leches, frutas, repostería artesanal). ¿Qué opinión le merece que el local utilice un sistema digital para registrar y controlar el desperdicio de alimentos (mermas), impulsando la sostenibilidad?
+* A) Excelente, demuestra responsabilidad ambiental, orden administrativo y compromiso con la frescura: **88% (22 personas)**
+* B) Favorable, aunque para mí lo primordial es el precio final: **12% (3 personas)**
+* C) No me parece relevante: **0% (0 personas)**
+> **Justificación técnica:** Valida con contundencia la funcionalidad innovadora de **Control y Tipificación de Desperdicios / Mermas**, alineando el software con la sostenibilidad gastronómica.
 
-#### Pregunta 6: Si pudiera solicitar la cuenta o consultar el estado de su mesa desde un dispositivo digital para pagar sin filas, ¿utilizaría este servicio?
-* A) Definitivamente sí, ahorraría tiempo valioso: **80% (20 clientes)**
-* B) Tal vez, dependiendo del momento: **16% (4 clientes)**
-* C) No, prefiero llamar al mesero varias veces: **4% (1 cliente)**
-> **Justificación para el sistema:** Respalda la modernización del flujo de mesas y precuentas de Star-Light.
-
----
-
-## 6. ANÁLISIS DE RESULTADOS Y OPORTUNIDADES DE MEJORA IDENTIFICADAS
-A partir de la triangulación de la entrevista, la observación y la encuesta, se establecen **4 oportunidades técnicas de mejora** que justifican el desarrollo del sistema **Star-Light**:
-
-1. **Automatización del flujo Mesa-Comanda-Caja:**  
-   Eliminar el papel mediante un control de estados de mesa (`Disponible`, `Ocupada`, `Por cobrar`) y pedidos con actualización inmediata en barra.
-2. **Módulo de Analítica: Productos más vendidos (Top Sellers):**  
-   Generar consultas y dashboards que muestren el volumen de ventas por categoría y producto para planear compras inteligentes y sugerencias de venta.
-3. **Módulo Innovador de Control de Desperdicios (Mermas):**  
-   Implementar un catálogo tipificado de causas de pérdida (`Caducidad`, `Error de preparación`, `Accidente/Deterioro`) que calcule el costo financiero de cada merma, permitiendo tomar medidas correctivas en cocina y barra.
-4. **Inventario en tiempo real con alertas de stock mínimo:**  
-   Evitar que los meseros ofrezcan productos agotados, actualizando el catálogo automáticamente con cada orden confirmada.
+#### Pregunta 6: Si al terminar su consumo pudiera consultar la cuenta de su mesa en un clic y pagar de inmediato sin filas en caja, ¿utilizaría esta opción?
+* A) Sí, agilizaría mi salida y evitaría esperas innecesarias: **84% (21 personas)**
+* B) Tal vez, dependiendo del tiempo disponible: **12% (3 personas)**
+* C) No, prefiero el proceso tradicional de llamar al mesero: **4% (1 persona)**
+> **Justificación técnica:** Valida la optimización del ciclo de rotación y liberación de mesas gestionado por Cat-fé.
 
 ---
 
-## 7. EVIDENCIAS DE LA SESIÓN 1
-* **Instrumentos construidos:** Entrevista (10 preguntas), matriz de observación (3 fases críticas) y encuesta estructurada (6 preguntas cerradas con justificación técnica).
-* **Documentación técnica:** Almacenada en `docs/investigacion.md` para control de versiones en Git.
-* **Commit asociado:** `docs: actualizar investigacion con sistema Star-Light y encuesta detallada`.
+## 6. OPORTUNIDADES TÉCNICAS DE MEJORA IDENTIFICADAS
+1. **Comandas y control de mesas en tiempo real:** Digitalizar la comunicación salón-barra para reducir tiempos de espera de 15 a menos de 5 minutos.
+2. **Módulo de Analítica (Productos Más Vendidos):** Métricas periódicas para destacar los productos favoritos del público y optimizar compras a proveedores.
+3. **Módulo de Mermas y Desperdicios:** Registro clasificado de pérdidas (vencimiento, error de preparación, daño) con cálculo de impacto económico para minimizar costos ocultos.
+4. **Inventario sincronizado:** Bloqueo en tiempo real de artículos sin disponibilidad para evitar cancelaciones en mesa.
