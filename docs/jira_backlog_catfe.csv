@@ -1,0 +1,46 @@
+Issue Type,Summary,Description,Epic Link,Priority,Story Points,Status
+Epic,Seguridad y Control de Acceso,Autenticación de usuarios cifrado de credenciales y gestión de roles,,High,,Backlog
+Epic,Catálogo e Inventario Dinámico,Gestión de productos perecederos e insumos control de stock y alertas de caducidad,,High,,Backlog
+Epic,Salón Mesas y Comandas,Control visual de mesas en tiempo real registro de órdenes y traslados,,High,,Backlog
+Epic,Despacho y Operación en Barra,Pantalla de cocina y barra para despacho cronológico,,High,,Backlog
+Epic,Precuenta Facturación y Caja,Cálculo automatizado de consumos cobro multimoneda y arqueo de caja,,High,,Backlog
+Epic,Analítica de Rotación y Mermas (Innovación),Ranking de más vendidos y registro costeo y reportes de desperdicios,,High,,Backlog
+Story,HU-01: Inicio de sesión seguro y redirección por rol,Como Administrador quiero iniciar sesión con credenciales seguras para acceder al sistema,Seguridad y Control de Acceso,High,3,To Do
+Sub-task,TASK-01: Crear tabla usuario con contraseña hash,Definir estructura DDL de usuarios con campo password BCRYPT,HU-01: Inicio de sesión seguro y redirección por rol,High,,To Do
+Sub-task,TASK-02: Desarrollar AuthController y sesión,Controlador de autenticación y manejo de variables de sesión,HU-01: Inicio de sesión seguro y redirección por rol,High,,To Do
+Sub-task,TASK-03: Maquetar vista de login en Bootstrap,Interfaz gráfica responsive de inicio de sesión,HU-01: Inicio de sesión seguro y redirección por rol,Medium,,To Do
+Story,HU-02: Visualización interactiva de mesas por estados,Como Mesero quiero visualizar el mapa de mesas para saber su disponibilidad,Salón Mesas y Comandas,High,3,To Do
+Sub-task,TASK-04: Crear tabla mesa con estados,Definir tabla mesa con estados Disponible Ocupada y Por Cobrar,HU-02: Visualización interactiva de mesas por estados,High,,To Do
+Sub-task,TASK-05: Desarrollar MesaModel y consultas,Consultas PDO para listar y actualizar estado de mesas,HU-02: Visualización interactiva de mesas por estados,High,,To Do
+Sub-task,TASK-06: Diseñar grilla visual de mesas,Interfaz con tarjetas y código de colores por estado,HU-02: Visualización interactiva de mesas por estados,Medium,,To Do
+Story,HU-03: Registro de comanda digital con notas,Como Mesero quiero registrar comandas digitales para enviarlas a barra sin papel,Salón Mesas y Comandas,High,5,To Do
+Sub-task,TASK-07: Crear tablas pedido y detalle_pedido,Estructura relacional de comandas e ítems ordenados,HU-03: Registro de comanda digital con notas,High,,To Do
+Sub-task,TASK-08: Controlador para agregar productos a orden,Lógica de backend para asociar productos a una mesa activa,HU-03: Registro de comanda digital con notas,High,,To Do
+Sub-task,TASK-09: Interfaz táctil de selección de menú,Vista rápida con botones táctiles para meseros,HU-03: Registro de comanda digital con notas,Medium,,To Do
+Story,HU-04: Pantalla de barra para despacho de pedidos,Como Barista quiero ver los pedidos ordenados cronológicamente y marcar despachos,Despacho y Operación en Barra,High,5,To Do
+Sub-task,TASK-10: Crear vista interactiva de barra,Pantalla para visualización de comandas en cocina y barra,HU-04: Pantalla de barra para despacho de pedidos,High,,To Do
+Sub-task,TASK-11: Endpoint para cambiar estado a Despachado,Acción en controlador para actualizar estado del pedido,HU-04: Pantalla de barra para despacho de pedidos,High,,To Do
+Story,HU-05: Generación de precuenta y detalle de cobro,Como Mesero quiero generar la precuenta para presentar el cobro exacto al cliente,Precuenta Facturación y Caja,High,3,To Do
+Sub-task,TASK-12: Consulta SQL de liquidación de mesa,Cálculo de sumatoria de consumos adiciones e impuestos,HU-05: Generación de precuenta y detalle de cobro,High,,To Do
+Sub-task,TASK-13: Vista modal de precuenta detallada,Modal con comprobante limpio y desglosado para el comensal,HU-05: Generación de precuenta y detalle de cobro,Medium,,To Do
+Story,HU-06: CRUD de catálogo y control de existencias,Como Administrador quiero gestionar el inventario para mantener el stock al día,Catálogo e Inventario Dinámico,High,5,To Do
+Sub-task,TASK-14: Crear tabla producto con costo y stock,Estructura relacional con campos de precio costo stock y unidad,HU-06: CRUD de catálogo y control de existencias,High,,To Do
+Sub-task,TASK-15: Desarrollar ProductoController con CRUD,Acciones de listar crear editar e inactivar productos,HU-06: CRUD de catálogo y control de existencias,High,,To Do
+Story,HU-07: Registro y tipificación de mermas y desperdicios,Como Barista o Administrador quiero registrar insumos dañados indicando el motivo,Analítica de Rotación y Mermas (Innovación),High,5,To Do
+Sub-task,TASK-16: Crear tabla merma con motivo y costo,Estructura para almacenar pérdidas por caducidad error o accidente,HU-07: Registro y tipificación de mermas y desperdicios,High,,To Do
+Sub-task,TASK-17: Formulario de registro rápido en barra,Interfaz simplificada para que el barista reporte desperdicios,HU-07: Registro y tipificación de mermas y desperdicios,High,,To Do
+Sub-task,TASK-18: Descuento de stock por merma,Actualización de inventario restando las unidades de baja,HU-07: Registro y tipificación de mermas y desperdicios,High,,To Do
+Story,HU-08: Dashboard analítico de productos más vendidos,Como Administrador quiero consultar el ranking Top Sellers para compras estratégicas,Analítica de Rotación y Mermas (Innovación),High,8,To Do
+Sub-task,TASK-19: Consulta SQL analítica con GROUP BY y SUM,Consulta para ranking de productos por cantidad y dinero recaudado,HU-08: Dashboard analítico de productos más vendidos,High,,To Do
+Sub-task,TASK-20: Renderizar gráfico analítico en dashboard,Gráficos interactivos de ventas por categoría y productos estrella,HU-08: Dashboard analítico de productos más vendidos,High,,To Do
+Story,HU-09: Reporte financiero de impacto de desperdicios,Como Administrador quiero ver las pérdidas por causa para reducir costos ocultos,Analítica de Rotación y Mermas (Innovación),High,5,To Do
+Sub-task,TASK-21: Consulta SQL de pérdidas consolidadas,Agrupación de pérdidas en dinero ($) según motivo de merma,HU-09: Reporte financiero de impacto de desperdicios,High,,To Do
+Sub-task,TASK-22: Vista de reporte financiero con indicadores,Métricas y porcentajes de costo de mermas en el período,HU-09: Reporte financiero de impacto de desperdicios,High,,To Do
+Story,HU-10: Arqueo y cierre de caja de la jornada,Como Administrador quiero realizar el cierre diario para cuadrar ingresos,Precuenta Facturación y Caja,High,5,To Do
+Sub-task,TASK-23: Tabla cierre_caja con balance multimoneda,Estructura para balance en efectivo datáfono y transferencia,HU-10: Arqueo y cierre de caja de la jornada,High,,To Do
+Sub-task,TASK-24: Lógica de bloqueo tras el cierre,Inmutabilidad de ventas una vez cerrado el turno,HU-10: Arqueo y cierre de caja de la jornada,High,,To Do
+Story,HU-11: Traslado de comandas activas entre mesas,Como Mesero quiero transferir consumos entre mesas si el cliente se reubica,Salón Mesas y Comandas,Medium,3,To Do
+Sub-task,TASK-25: Procedimiento de actualización de mesa_id,Actualizar relación de mesa en pedidos abiertos sin duplicar registros,HU-11: Traslado de comandas activas entre mesas,Medium,,To Do
+Story,HU-12: Monitoreo de alertas preventivas de caducidad,Como Administrador quiero alertas de caducidad para evitar mermas por vencimiento,Catálogo e Inventario Dinámico,High,5,To Do
+Sub-task,TASK-26: Lógica de detección de insumos menores a 48h,Filtro de fechas de caducidad próxima en insumos perecederos,HU-12: Monitoreo de alertas preventivas de caducidad,High,,To Do
+Sub-task,TASK-27: Componente visual de alertas preventivas,Tarjetas de alerta y badges de advertencia en el dashboard,HU-12: Monitoreo de alertas preventivas de caducidad,High,,To Do
