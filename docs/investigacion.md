@@ -97,7 +97,7 @@ Actualmente, **Star-Light** realiza la toma de comandas mediante libretas de pap
 
 #### Pregunta 1: Al visitar una cafetería en horarios de alta concurrencia, ¿cómo califica habitualmente el tiempo de espera desde que pide su orden hasta que la recibe en la mesa?
 | Opción de Respuesta | Frecuencia Absoluta (Votos) | Porcentaje (%) |
-| :--- | :---: | :---: |
+| :--- | :---: | :---: |V
 | Aceptable, pero con demoras evidentes en horas pico (10 a 15 minutos) | 5 | 50.0% |
 | Rápido y sin contratiempos (menos de 5 minutos) | 3 | 30.0% |
 | Lento y con esperas excesivas (más de 15 minutos) | 2 | 20.0% |

@@ -1,5 +1,8 @@
+# Entorno y credenciales privadas
 app/config/database.local.php
 .env
+
+# Archivos del sistema y editor
 .vscode/
 Thumbs.db
 Desktop.ini
