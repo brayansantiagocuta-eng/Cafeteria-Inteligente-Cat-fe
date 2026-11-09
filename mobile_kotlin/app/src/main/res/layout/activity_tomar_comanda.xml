@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#F8F9FA">
+
+    <TextView
+        android:id="@+id/tvMesaTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toma de Comanda - Mesa"
+        android:textColor="#2C1810"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvResumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ítems añadidos a la orden:\n• 2x Capuchino Especial ($17.000)\n• 1x Cheesecake de Arándanos ($12.000)"
+        android:textSize="16sp"
+        android:textColor="#212529"
+        android:padding="12dp"
+        android:background="#F5EBE1"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvTotalCalculado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total a Liquidar: $29.000 COP"
+        android:textColor="#C88A58"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/btnEnviarBarra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🚀 Enviar Comanda a Barra / KDS"
+        android:backgroundTint="#2C1810"
+        android:textColor="#FFFFFF"
+        android:padding="14dp" />
+
+</LinearLayout>
