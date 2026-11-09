@@ -1,28 +1,21 @@
-package com.catfe.app.models
+package com.example.cat_f.models
 
+// Clase sencilla para las Mesas
 data class Mesa(
-    val id: Int,
     val numero: Int,
-    val capacidad: Int,
-    var estado: String // "DISPONIBLE", "OCUPADA", "POR_COBRAR"
+    var estado: String // "Libre" o "Ocupada"
 )
 
+// Clase sencilla para los Productos del menú
 data class Producto(
-    val id: Int,
     val nombre: String,
-    val categoria: String,
-    val precio: Double,
+    val precio: Int,
     val stock: Int
 )
 
-data class ItemComanda(
-    val producto: Producto,
-    var cantidad: Int,
-    var nota: String = ""
-)
-
-data class RespuestaApi<T>(
-    val success: Boolean,
-    val data: T?,
-    val message: String?
+// Clase sencilla para los Desperdicios (Mermas)
+data class Desperdicio(
+    val producto: String,
+    val motivo: String,
+    val perdidaDinero: Int
 )
