@@ -1,7 +1,5 @@
--- ============================================================================
+
 -- PROYECTO: SISTEMA INTELIGENTE DE GESTIÓN "CAT-FÉ" (CAFETERÍA STAR-LIGHT)
--- SESIÓN 5: INSERCIÓN DE DATOS DE PRUEBA (DML)
--- ============================================================================
 
 USE catfe_db;
 
@@ -81,4 +79,4 @@ INSERT INTO merma (producto_id, usuario_id, cantidad, motivo, costo_unitario, pe
 
 -- 9. Cierre de caja histórico
 INSERT INTO cierre_caja (usuario_id, fecha_apertura, fecha_cierre, base_inicial, total_efectivo, total_transferencia, total_datafono, total_mermas, observaciones) VALUES
-(1, '2026-11-08 08:00:00', '2026-11-08 20:00:00', 100000.00, 29000.00, 30000.00, 20500.00, 47600.00, 'Cierre de jornada sábado sin descuadres de efectivo');
+(1, '2026-11-08 08:00:00', '2026-11-08 20:00:00', 100000.00, 29000.00, 30000.00, 20500.00, 47600.00, 'Cierre de jornada sábado sin descuadres de efectivo')

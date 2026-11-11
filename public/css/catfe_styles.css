@@ -10,6 +10,8 @@
     --color-border: #E8E2D8;
     --color-danger: #DC3545;
     --color-success: #28A745;
+    --sidebar-collapsed-width: 72px;
+    --sidebar-expanded-width: 260px;
 }
 
 body {
@@ -23,9 +25,11 @@ h1, h2, h3, h4, h5, h6, .brand-title {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Sidebar para Desktop */
+/* =================================================== */
+/* SIDEBAR DESPLEGABLE AL PASAR EL MOUSE (HOVER EXPAND)*/
+/* =================================================== */
 .catfe-sidebar {
-    width: 260px;
+    width: var(--sidebar-collapsed-width);
     height: 100vh;
     position: fixed;
     top: 0;
@@ -35,53 +39,68 @@ h1, h2, h3, h4, h5, h6, .brand-title {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.5rem 1rem;
-    z-index: 1030;
-    transition: all 0.3s ease;
+    padding: 1.2rem 0.6rem;
+    z-index: 1050;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    box-shadow: 3px 0 15px rgba(46, 35, 0, 0.15);
+}
+
+.catfe-sidebar:hover {
+    width: var(--sidebar-expanded-width);
+}
+
+.catfe-sidebar .brand-text,
+.catfe-sidebar .nav-text,
+.catfe-sidebar .user-info-text {
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.25s ease;
+    display: inline-block;
+}
+
+.catfe-sidebar:hover .brand-text,
+.catfe-sidebar:hover .nav-text,
+.catfe-sidebar:hover .user-info-text {
+    opacity: 1;
 }
 
 .catfe-sidebar .nav-link {
     color: #E2DFD2;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 10px;
     margin-bottom: 0.4rem;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1.1rem;
     font-weight: 500;
-    transition: all 0.2s;
+    transition: background 0.2s, color 0.2s;
     cursor: pointer;
     text-decoration: none;
 }
 
-.catfe-sidebar .nav-link:hover, .catfe-sidebar .nav-link.active {
+.catfe-sidebar .nav-link i {
+    font-size: 1.3rem;
+    min-width: 28px;
+    text-align: center;
+}
+
+.catfe-sidebar .nav-link:hover, 
+.catfe-sidebar .nav-link.active {
     background: var(--color-bronze);
     color: #FFF;
 }
 
 .main-content {
-    margin-left: 260px;
+    margin-left: var(--sidebar-collapsed-width);
     padding: 2rem;
     min-height: 100vh;
-    transition: all 0.3s ease;
+    transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Responsive: Tablet y Móvil */
-@media (max-width: 991.98px) {
-    .catfe-sidebar {
-        margin-left: -260px;
-    }
-    .catfe-sidebar.show {
-        margin-left: 0;
-    }
-    .main-content {
-        margin-left: 0;
-        padding: 1rem;
-        padding-bottom: 5rem;
-    }
-}
-
-/* Bottom Navigation Bar en Móvil */
+/* =================================================== */
+/* BOTTOM NAV EN MÓVIL CON CÍRCULO CLARO AL SELECCIONAR*/
+/* =================================================== */
 .bottom-nav-mobile {
     display: none;
     position: fixed;
@@ -89,44 +108,194 @@ h1, h2, h3, h4, h5, h6, .brand-title {
     left: 0;
     right: 0;
     background: var(--color-bark);
-    z-index: 1040;
-    padding: 0.5rem 0;
+    z-index: 1060;
+    padding: 0.6rem 0;
     border-top: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 991.98px) {
+    .catfe-sidebar {
+        display: none !important;
+    }
+    .main-content {
+        margin-left: 0 !important;
+        padding: 1rem;
+        padding-bottom: 5.5rem;
+    }
     .bottom-nav-mobile {
         display: flex;
         justify-content: space-around;
+        align-items: center;
     }
 }
 
 .bottom-nav-item {
-    color: #E2DFD2;
+    color: #D3CBBF;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     text-decoration: none;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.25s ease;
+    position: relative;
 }
 
-.bottom-nav-item.active, .bottom-nav-item:hover {
-    color: var(--color-goldenrod);
-}
-
-.bottom-nav-item i {
+.bottom-nav-item .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.25rem;
-    display: block;
+    transition: all 0.25s ease;
 }
 
-/* Botones con paleta */
+/* Círculo claro animado al seleccionar */
+.bottom-nav-item.active .icon-wrapper {
+    background-color: var(--color-goldenrod);
+    color: var(--color-bark) !important;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(219, 149, 1, 0.4);
+}
+
+.bottom-nav-item.active span {
+    color: #FFF;
+    font-weight: 600;
+}
+
+/* =================================================== */
+/* ESTANTE MODULAR DE CAJAS (INVENTARIO VISUAL)       */
+/* =================================================== */
+.warehouse-rack {
+    background: #1F1914;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 4px solid #3E3228;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.rack-shelf {
+    background: #2D241D;
+    border-bottom: 8px solid #5A4A3C;
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.rack-box-card {
+    background: #E8A838;
+    border: 3px solid #8A5612;
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: #2E2300;
+}
+
+.rack-box-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+.rack-box-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 10px;
+    background: #FFF;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: 1px solid #8A5612;
+}
+
+/* =================================================== */
+/* PLANO ARQUITECTÓNICO DE SEPARACIÓN DE MESAS        */
+/* =================================================== */
+.floorplan-container {
+    background: #FFFFFF;
+    border: 2px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.floorplan-zone {
+    border: 2px dashed #C8B89E;
+    border-radius: 12px;
+    padding: 1.2rem;
+    background: #FAF7F2;
+    margin-bottom: 1.2rem;
+}
+
+.zone-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-bronze);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.table-seat-unit {
+    background: #FFF;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.table-seat-unit:hover {
+    border-color: var(--color-goldenrod);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.table-booth {
+    background: #EAF5EA;
+    border-color: #72B872;
+}
+
+.table-central {
+    background: #E8F4F8;
+    border-color: #6DB3D1;
+}
+
+.table-lounge {
+    background: #FDF0E8;
+    border-color: #E28C63;
+}
+
+.table-bar {
+    background: #FDF7E7;
+    border-color: #DEB34A;
+}
+
+/* Componentes auxiliares */
+.card-catfe {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(46, 35, 0, 0.04);
+}
+
 .btn-catfe-primary {
     background-color: var(--color-bark);
     color: #FFF;
     border: none;
     font-weight: 600;
-    transition: all 0.2s;
 }
-
 .btn-catfe-primary:hover {
     background-color: var(--color-bronze);
     color: #FFF;
@@ -138,76 +307,18 @@ h1, h2, h3, h4, h5, h6, .brand-title {
     font-weight: 600;
     border: none;
 }
-
 .btn-catfe-accent:hover {
     background-color: #C38300;
     color: #FFF;
 }
 
-/* Tarjetas y Badges */
-.card-catfe {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(46, 35, 0, 0.04);
-}
+.badge-seaweed { background-color: var(--color-seaweed); color: #FFF; }
+.badge-bronze { background-color: var(--color-bronze); color: #FFF; }
+.badge-goldenrod { background-color: var(--color-goldenrod); color: var(--color-bark); }
 
-.badge-seaweed {
-    background-color: var(--color-seaweed);
-    color: #FFF;
-}
-
-.badge-bronze {
-    background-color: var(--color-bronze);
-    color: #FFF;
-}
-
-.badge-goldenrod {
-    background-color: var(--color-goldenrod);
-    color: var(--color-bark);
-}
-
-/* Toast Container */
 .toast-container {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    z-index: 1060;
-}
-
-/* Timeline */
-.timeline {
-    position: relative;
-    padding: 1rem 0;
-    list-style: none;
-}
-.timeline:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 20px;
-    width: 3px;
-    background: var(--color-border);
-}
-.timeline-item {
-    position: relative;
-    margin-bottom: 1.5rem;
-    padding-left: 50px;
-}
-.timeline-badge {
-    position: absolute;
-    left: 10px;
-    top: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    text-align: center;
-    background: var(--color-goldenrod);
-    color: white;
-    font-size: 12px;
-    line-height: 24px;
-}
-.timeline-badge.completed {
-    background: var(--color-seaweed);
+    z-index: 1070;
 }

@@ -1,26 +1,17 @@
--- ============================================================================
--- PROYECTO: SISTEMA INTELIGENTE DE GESTIÓN "CAT-FÉ" (CAFETERÍA STAR-LIGHT)
--- TECNÓLOGO EN ANÁLISIS Y DESARROLLO DE SOFTWARE (ADSO) - SENA
--- APRENDIZ: BRAYAN SANTIAGO CUTA
--- SESIÓN 5: MODELO DE DATOS RELACIONAL NORMALIZADO (3FN) - DDL
--- ============================================================================
-
 DROP DATABASE IF EXISTS catfe_db;
 CREATE DATABASE catfe_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE catfe_db;
 
--- ----------------------------------------------------------------------------
 -- 1. TABLA: rol (Normalización de perfiles de acceso RBAC)
--- ----------------------------------------------------------------------------
+
 CREATE TABLE rol (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL UNIQUE,
     descripcion VARCHAR(150) NOT NULL
 ) ENGINE=InnoDB;
 
--- ----------------------------------------------------------------------------
 -- 2. TABLA: usuario (Empleados y administradores del establecimiento)
--- ----------------------------------------------------------------------------
+
 CREATE TABLE usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     rol_id INT NOT NULL,
@@ -33,18 +24,16 @@ CREATE TABLE usuario (
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
--- ----------------------------------------------------------------------------
 -- 3. TABLA: categoria (Clasificación del catálogo gastronómico)
--- ----------------------------------------------------------------------------
+
 CREATE TABLE categoria (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(60) NOT NULL UNIQUE,
     descripcion VARCHAR(150) NULL
 ) ENGINE=InnoDB;
 
--- ----------------------------------------------------------------------------
 -- 4. TABLA: producto (Catálogo de bebidas, repostería e insumos con caducidad)
--- ----------------------------------------------------------------------------
+
 CREATE TABLE producto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     categoria_id INT NOT NULL,
@@ -61,9 +50,8 @@ CREATE TABLE producto (
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
--- ----------------------------------------------------------------------------
 -- 5. TABLA: mesa (Control físico de ubicaciones en salón de Star-Light)
--- ----------------------------------------------------------------------------
+
 CREATE TABLE mesa (
     id INT AUTO_INCREMENT PRIMARY KEY,
     numero INT NOT NULL UNIQUE,

@@ -1,5 +1,5 @@
 <?php
-// Archivo de vista principal con los 10 componentes interactivos
+// Archivo de vista principal con los 10 componentes interactivos actualizados
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,9 +24,7 @@
 <div class="toast-container">
     <div id="catfeToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
-            <div class="toast-body" id="toastMessage">
-                ¡Acción completada!
-            </div>
+            <div class="toast-body" id="toastMessage">¡Acción completada!</div>
             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
@@ -40,7 +38,7 @@
         <div class="row g-0">
             <!-- Izquierda: Fotografía minimalista de café y branding -->
             <div class="col-md-6 d-none d-md-flex flex-column justify-content-between p-5 text-white" 
-                 style="background: linear-gradient(135deg, rgba(46,35,0,0.85), rgba(192,88,5,0.85)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80') center/cover;">
+                 style="background: linear-gradient(135deg, rgba(46,35,0,0.88), rgba(192,88,5,0.85)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80') center/cover;">
                 <div>
                     <span class="badge badge-goldenrod px-3 py-2 rounded-pill mb-3">Star-Light Cafetería</span>
                     <h2 class="display-6 fw-bold">Cat-fé 🐾☕</h2>
@@ -55,7 +53,7 @@
             <div class="col-md-6 p-4 p-lg-5 d-flex flex-column justify-content-center bg-white">
                 <div class="mb-4 text-center text-md-start">
                     <h3 class="fw-bold" style="color: var(--color-bark);">Iniciar Sesión</h3>
-                    <p class="text-muted small">Ingresa tus credenciales para acceder al sistema.</p>
+                    <p class="text-muted small">Ingresa tus credenciales para acceder como Administrador.</p>
                 </div>
 
                 <form id="formLogin" onsubmit="event.preventDefault(); handleLogin();" novalidate>
@@ -71,7 +69,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between">
                             <label class="form-label small fw-semibold">Contraseña</label>
-                            <a href="#" class="small text-decoration-none" style="color: var(--color-bronze);" onclick="showToast('Enlace de recuperación enviado al administrador', 'info')">¿Olvidaste tu contraseña?</a>
+                            <a href="#" class="small text-decoration-none" style="color: var(--color-bronze);" onclick="showToast('Enlace de recuperación enviado al Administrador', 'info')">¿Olvidaste tu contraseña?</a>
                         </div>
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock"></i></span>
@@ -107,59 +105,96 @@
 
     <!-- 10. NAVBAR SUPERIOR RESPONSIVE (TABLET & MOBILE) -->
     <nav class="navbar navbar-light bg-white border-bottom d-lg-none sticky-top px-3">
-        <button class="btn btn-link text-dark p-0 me-2" onclick="toggleSidebar()">
-            <i class="bi bi-list fs-2"></i>
-        </button>
         <span class="navbar-brand fw-bold mb-0" style="color: var(--color-bark);">🐾 Cat-fé</span>
         <button class="btn btn-sm btn-outline-danger" onclick="logout()">
             <i class="bi bi-box-arrow-right"></i>
         </button>
     </nav>
 
-    <!-- 10. SIDEBAR LATERAL FIJO (DESKTOP) -->
+    <!-- SIDEBAR COLAPSABLE CON HOVER EXPAND (DESKTOP) -->
     <aside class="catfe-sidebar" id="sidebarMenu">
         <div>
-            <div class="d-flex align-items-center justify-content-between mb-4 px-2">
-                <div class="d-flex align-items-center gap-2">
-                    <span class="fs-4">🐾</span>
-                    <div>
-                        <h5 class="mb-0 fw-bold brand-title">Cat-fé</h5>
-                        <small class="text-white-50" style="font-size: 0.7rem;">Star-Light Cafetería</small>
-                    </div>
+            <div class="d-flex align-items-center gap-3 mb-4 px-2">
+                <span class="fs-4">🐾</span>
+                <div class="brand-text">
+                    <h5 class="mb-0 fw-bold brand-title text-white">Cat-fé</h5>
+                    <small class="text-white-50" style="font-size: 0.72rem;">Star-Light Cafetería</small>
                 </div>
-                <button class="btn-close btn-close-white d-lg-none" onclick="toggleSidebar()"></button>
             </div>
 
             <nav class="nav flex-column">
-                <a class="nav-link active" onclick="switchSection('dashboard', this)"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                <a class="nav-link" onclick="switchSection('menu', this)"><i class="bi bi-cup-hot"></i> Menú Digital</a>
-                <a class="nav-link" onclick="switchSection('listados', this)"><i class="bi bi-table"></i> Listados / Tablas</a>
-                <a class="nav-link" onclick="switchSection('formularios', this)"><i class="bi bi-pencil-square"></i> Nuevo Producto</a>
-                <a class="nav-link" onclick="switchSection('detalle', this)"><i class="bi bi-receipt"></i> Detalle de Pedido</a>
-                <a class="nav-link" onclick="switchSection('reportes', this)"><i class="bi bi-bar-chart-line"></i> Reportes & Mermas</a>
+                <a class="nav-link active" onclick="switchSection('dashboard', this)">
+                    <i class="bi bi-speedometer2"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('mesas', this)">
+                    <i class="bi bi-grid-3x3"></i>
+                    <span class="nav-text">Plano de Mesas</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('inventario', this)">
+                    <i class="bi bi-box-seam"></i>
+                    <span class="nav-text">Estante Inventario</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('menu', this)">
+                    <i class="bi bi-cup-hot"></i>
+                    <span class="nav-text">Menú Digital</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('listados', this)">
+                    <i class="bi bi-table"></i>
+                    <span class="nav-text">Órdenes / Pedidos</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('formularios', this)">
+                    <i class="bi bi-pencil-square"></i>
+                    <span class="nav-text">Nuevo Producto</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('detalle', this)">
+                    <i class="bi bi-receipt"></i>
+                    <span class="nav-text">Detalle de Pedido</span>
+                </a>
+                <a class="nav-link" onclick="switchSection('reportes', this)">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span class="nav-text">Reportes & Mermas</span>
+                </a>
             </nav>
         </div>
 
         <div class="border-top border-secondary pt-3">
-            <div class="d-flex align-items-center gap-2 mb-2 px-2">
-                <div class="rounded-circle bg-warning text-dark fw-bold d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">BC</div>
-                <div class="overflow-hidden">
-                    <div class="small fw-bold text-truncate">Brayan Cuta</div>
+            <div class="d-flex align-items-center gap-2 mb-2 px-1">
+                <div class="rounded-circle bg-warning text-dark fw-bold d-flex align-items-center justify-content-center" style="min-width: 36px; height: 36px;">BC</div>
+                <div class="user-info-text overflow-hidden">
+                    <div class="small fw-bold text-truncate text-white">Brayan Cuta</div>
                     <div class="text-white-50" style="font-size: 0.7rem;">Administrador</div>
                 </div>
             </div>
             <button class="btn btn-sm btn-outline-light w-100" onclick="logout()">
-                <i class="bi bi-box-arrow-left me-1"></i> Cerrar Sesión
+                <i class="bi bi-box-arrow-left"></i>
+                <span class="nav-text ms-1">Cerrar Sesión</span>
             </button>
         </div>
     </aside>
 
-    <!-- 10. BOTTOM NAVIGATION BAR FIJA (MOBILE) -->
+    <!-- BOTTOM NAVIGATION BAR EN TELÉFONO CON CÍRCULO CLARO -->
     <div class="bottom-nav-mobile">
-        <div class="bottom-nav-item active" onclick="switchSection('dashboard', this); updateMobileNav(this);"><i class="bi bi-speedometer2"></i>Inicio</div>
-        <div class="bottom-nav-item" onclick="switchSection('menu', this); updateMobileNav(this);"><i class="bi bi-cup-hot"></i>Menú</div>
-        <div class="bottom-nav-item" onclick="switchSection('listados', this); updateMobileNav(this);"><i class="bi bi-table"></i>Órdenes</div>
-        <div class="bottom-nav-item" onclick="switchSection('reportes', this); updateMobileNav(this);"><i class="bi bi-bar-chart-line"></i>Reportes</div>
+        <div class="bottom-nav-item active" onclick="switchSection('dashboard'); selectMobileItem(this);">
+            <div class="icon-wrapper"><i class="bi bi-speedometer2"></i></div>
+            <span>Inicio</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchSection('mesas'); selectMobileItem(this);">
+            <div class="icon-wrapper"><i class="bi bi-grid-3x3"></i></div>
+            <span>Mesas</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchSection('inventario'); selectMobileItem(this);">
+            <div class="icon-wrapper"><i class="bi bi-box-seam"></i></div>
+            <span>Stock</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchSection('menu'); selectMobileItem(this);">
+            <div class="icon-wrapper"><i class="bi bi-cup-hot"></i></div>
+            <span>Menú</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchSection('reportes'); selectMobileItem(this);">
+            <div class="icon-wrapper"><i class="bi bi-bar-chart-line"></i></div>
+            <span>Reportes</span>
+        </div>
     </div>
 
     <!-- CONTENEDOR PRINCIPAL DINÁMICO -->
@@ -171,11 +206,11 @@
         <section id="section-dashboard" class="content-section">
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
                 <div>
-                    <h2 class="fw-bold mb-1" style="color: var(--color-bark);">Panel Principal</h2>
+                    <h2 class="fw-bold mb-1" style="color: var(--color-bark);">Panel del Administrador</h2>
                     <p class="text-muted mb-0 small">Métricas operativas y actividad en tiempo real de Star-Light.</p>
                 </div>
-                <button class="btn btn-catfe-accent btn-sm" data-bs-toggle="modal" data-bs-target="#modalNuevoPedido">
-                    <i class="bi bi-plus-circle me-1"></i> Tomar Comanda Rápida
+                <button class="btn btn-catfe-accent btn-sm" onclick="switchSection('mesas')">
+                    <i class="bi bi-grid-3x3 me-1"></i> Ver Salón de Mesas
                 </button>
             </div>
 
@@ -211,7 +246,7 @@
                     <div class="card card-catfe p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="text-muted small fw-semibold">Top Seller</span>
+                                <span class="text-muted small fw-semibold">Top Vendidos</span>
                                 <h4 class="fw-bold mt-1 mb-0 text-truncate" style="color: var(--color-bark); max-width: 150px;">Capuchino Cat-fé</h4>
                                 <small class="text-muted">38 unidades vendidas</small>
                             </div>
@@ -280,6 +315,274 @@
         </section>
 
         <!-- ========================================== -->
+        <!-- PLANO DE MESAS CON SEPARACIÓN ARQUITECTÓNICA -->
+        <!-- ========================================== -->
+        <section id="section-mesas" class="content-section d-none">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+                <div>
+                    <h2 class="fw-bold mb-1" style="color: var(--color-bark);">Distribución y Separación de Mesas</h2>
+                    <p class="text-muted mb-0 small">Mapa del salón de Star-Light distribuido por zonas de servicio.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-success px-3 py-2"><i class="bi bi-circle-fill me-1"></i> Disponible</span>
+                    <span class="badge bg-warning text-dark px-3 py-2"><i class="bi bi-circle-fill me-1"></i> Ocupada</span>
+                    <span class="badge bg-danger px-3 py-2"><i class="bi bi-circle-fill me-1"></i> Por Cobrar</span>
+                </div>
+            </div>
+
+            <div class="floorplan-container">
+                <!-- Zona Superior: Cabinas Verdes Privadas (Booths) -->
+                <div class="floorplan-zone">
+                    <div class="zone-title"><i class="bi bi-shield-shaded"></i> Zona Cabinas Privadas / Booths Superiores</div>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3">
+                            <div class="table-seat-unit table-booth" onclick="gestionarMesa(1, 'Cabina Privada 1', 'DISPONIBLE')">
+                                <div class="fw-bold text-success">Mesa B-01</div>
+                                <div class="small text-muted">👥 4 Puestos · Disponible</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="table-seat-unit table-booth" onclick="gestionarMesa(2, 'Cabina Privada 2', 'OCUPADA')">
+                                <div class="fw-bold text-warning">Mesa B-02</div>
+                                <div class="small text-muted">👥 4 Puestos · Ocupada</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="table-seat-unit table-booth" onclick="gestionarMesa(3, 'Cabina Privada 3', 'DISPONIBLE')">
+                                <div class="fw-bold text-success">Mesa B-03</div>
+                                <div class="small text-muted">👥 4 Puestos · Disponible</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="table-seat-unit table-booth" onclick="gestionarMesa(4, 'Cabina Privada 4', 'POR_COBRAR')">
+                                <div class="fw-bold text-danger">Mesa B-04</div>
+                                <div class="small text-muted">👥 4 Puestos · Por Cobrar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zona Media: Salón Central (Mesas Redondas Azules) + Salones Lounge Rosados -->
+                <div class="row g-3">
+                    <!-- Lounge Izquierdo (Mesas Rosadas) -->
+                    <div class="col-12 col-md-4">
+                        <div class="floorplan-zone h-100">
+                            <div class="zone-title"><i class="bi bi-cup"></i> Salón Lounge Familiar</div>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="table-seat-unit table-lounge" onclick="gestionarMesa(5, 'Lounge Familiar L-01', 'OCUPADA')">
+                                    <div class="fw-bold text-warning">Lounge L-01</div>
+                                    <div class="small text-muted">👥 6 Puestos · Consumo activo</div>
+                                </div>
+                                <div class="table-seat-unit table-lounge" onclick="gestionarMesa(6, 'Lounge Familiar L-02', 'DISPONIBLE')">
+                                    <div class="fw-bold text-success">Lounge L-02</div>
+                                    <div class="small text-muted">👥 6 Puestos · Disponible</div>
+                                </div>
+                                <div class="table-seat-unit table-lounge" onclick="gestionarMesa(7, 'Lounge Familiar L-03', 'DISPONIBLE')">
+                                    <div class="fw-bold text-success">Lounge L-03</div>
+                                    <div class="small text-muted">👥 6 Puestos · Disponible</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Salón Central (Mesas Azules en 2 Pasillos) -->
+                    <div class="col-12 col-md-8">
+                        <div class="floorplan-zone h-100">
+                            <div class="zone-title"><i class="bi bi-diagram-3"></i> Salón Central (Pasillo Principal)</div>
+                            <div class="row g-3">
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(8, 'Mesa Central C-01', 'DISPONIBLE')">
+                                        <div class="fw-bold text-success">Mesa C-01</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(9, 'Mesa Central C-02', 'OCUPADA')">
+                                        <div class="fw-bold text-warning">Mesa C-02</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(10, 'Mesa Central C-03', 'DISPONIBLE')">
+                                        <div class="fw-bold text-success">Mesa C-03</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(11, 'Mesa Central C-04', 'DISPONIBLE')">
+                                        <div class="fw-bold text-success">Mesa C-04</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(12, 'Mesa Central C-05', 'OCUPADA')">
+                                        <div class="fw-bold text-warning">Mesa C-05</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(13, 'Mesa Central C-06', 'DISPONIBLE')">
+                                        <div class="fw-bold text-success">Mesa C-06</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(14, 'Mesa Central C-07', 'DISPONIBLE')">
+                                        <div class="fw-bold text-success">Mesa C-07</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="table-seat-unit table-central" onclick="gestionarMesa(15, 'Mesa Central C-08', 'POR_COBRAR')">
+                                        <div class="fw-bold text-danger">Mesa C-08</div>
+                                        <div class="small text-muted">👥 4 Puestos</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zona Inferior: Barra Semicircular y Cocina (Kitchen) -->
+                <div class="floorplan-zone mt-3">
+                    <div class="row align-items-center g-3">
+                        <div class="col-md-7">
+                            <div class="zone-title"><i class="bi bi-cup-straw"></i> Barra Semicircular de Café & Coctelería</div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-warning text-dark p-2">Barra Banqueta 1</span>
+                                <span class="badge bg-success p-2">Barra Banqueta 2</span>
+                                <span class="badge bg-warning text-dark p-2">Barra Banqueta 3</span>
+                                <span class="badge bg-success p-2">Barra Banqueta 4</span>
+                                <span class="badge bg-success p-2">Barra Banqueta 5</span>
+                                <span class="badge bg-success p-2">Barra Banqueta 6</span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="p-3 bg-secondary text-white rounded-3 text-center">
+                                <div class="fw-bold">ÁREA DE COCINA (KITCHEN) & BARRA KDS</div>
+                                <small class="text-white-50">Despacho de pedidos y control de mermas</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ESTANTE MODULAR DE CAJAS (INVENTARIO VISUAL)-->
+        <!-- ========================================== -->
+        <section id="section-inventario" class="content-section d-none">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+                <div>
+                    <h2 class="fw-bold mb-1" style="color: var(--color-bark);">Estante de Inventario (Almacén Star-Light)</h2>
+                    <p class="text-muted mb-0 small">Visualización en estantería modular de cajas con stock físico y alertas.</p>
+                </div>
+                <button class="btn btn-catfe-primary btn-sm" onclick="switchSection('formularios')">
+                    <i class="bi bi-plus-lg me-1"></i> Añadir Nueva Caja / Producto
+                </button>
+            </div>
+
+            <div class="warehouse-rack">
+                <!-- Nivel 1 (Superior): Insumos de Alta Rotación -->
+                <div class="rack-shelf">
+                    <div class="d-flex justify-content-between text-white-50 small mb-2 border-bottom border-secondary pb-1">
+                        <span>ESTANTE NIVEL 1 · CAFÉ EN GRANO & POLVOS</span>
+                        <span>Capacidad: 100%</span>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="rack-box-card">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="fw-bold mb-0">Café Grano Especial Huila (10 kg)</h6>
+                                    <span class="badge bg-dark text-warning">Stock: 35 kg</span>
+                                </div>
+                                <div class="small">Lote: HU-2026-B · Caducidad: 30 Dic 2026</div>
+                                <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-dark">
+                                    <span class="fw-bold">$2.800 / porción</span>
+                                    <button class="btn btn-sm btn-dark text-warning py-0" onclick="showToast('Ajustando stock de Café', 'info')">Ajustar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="rack-box-card">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="fw-bold mb-0">Té Matcha Japonés en Polvo (5 kg)</h6>
+                                    <span class="badge bg-dark text-warning">Stock: 20 kg</span>
+                                </div>
+                                <div class="small">Lote: MAT-09 · Caducidad: 25 Nov 2026</div>
+                                <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-dark">
+                                    <span class="fw-bold">$3.800 / dosis</span>
+                                    <button class="btn btn-sm btn-dark text-warning py-0" onclick="showToast('Ajustando stock de Matcha', 'info')">Ajustar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nivel 2 (Medio): Caja Grande Central (Insumos Perecederos) -->
+                <div class="rack-shelf">
+                    <div class="d-flex justify-content-between text-white-50 small mb-2 border-bottom border-secondary pb-1">
+                        <span>ESTANTE NIVEL 2 · CAJA MAESTRA DE REPOSTERÍA DEL DÍA</span>
+                        <span>Caducidad Corta (< 48h)</span>
+                    </div>
+                    <div class="rack-box-card" style="background: #DE9B28;">
+                        <div class="row align-items-center g-3">
+                            <div class="col-md-8">
+                                <h5 class="fw-bold mb-1">Caja Maestra: Repostería y Cheesecakes Frescos</h5>
+                                <p class="small mb-1">Contiene porciones horneadas con vida útil estricta de 72 horas para prevenir mermas.</p>
+                                <div class="badge bg-danger me-1">12 Cheesecakes</div>
+                                <div class="badge bg-danger me-1">9 Tortas de Chocolate</div>
+                                <div class="badge bg-dark">0 Croissants (Agotado)</div>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <div class="fw-bold fs-5 text-dark">$12.000 COP / Pza</div>
+                                <button class="btn btn-sm btn-dark text-white mt-2" onclick="showToast('Alerta de caducidad revisada', 'success')">
+                                    <i class="bi bi-shield-check"></i> Auditar Lote
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nivel 3 (Inferior): Dos Cajas Medianas (Leches y Desechables) -->
+                <div class="rack-shelf mb-0">
+                    <div class="d-flex justify-content-between text-white-50 small mb-2 border-bottom border-secondary pb-1">
+                        <span>ESTANTE NIVEL 3 · LÁCTEOS Y BEBIDAS VEGETALES</span>
+                        <span>Refrigeración</span>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="rack-box-card">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="fw-bold mb-0">Leche de Almendras Orgánica (Caja 12L)</h6>
+                                    <span class="badge bg-danger">Alerta: 6L</span>
+                                </div>
+                                <div class="small text-danger fw-semibold">¡Próxima a vencer en 48 horas!</div>
+                                <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-dark">
+                                    <span class="fw-bold">$12.000 / Litro</span>
+                                    <button class="btn btn-sm btn-danger text-white py-0" onclick="switchSection('reportes')">Ver Merma</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="rack-box-card">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="fw-bold mb-0">Vasos Biodegradables 12oz (Caja 500u)</h6>
+                                    <span class="badge bg-dark text-warning">Stock: 450 u</span>
+                                </div>
+                                <div class="small">Lote desechable ecológico de takeaway</div>
+                                <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-dark">
+                                    <span class="fw-bold">$350 / unidad</span>
+                                    <button class="btn btn-sm btn-dark text-warning py-0" onclick="showToast('Insumos al día', 'info')">Revisar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
         <!-- 3. PANTALLA: MENÚ (GESTIÓN E INTERFAZ)     -->
         <!-- ========================================== -->
         <section id="section-menu" class="content-section d-none">
@@ -288,7 +591,6 @@
                     <h2 class="fw-bold mb-1" style="color: var(--color-bark);">Menú Digital</h2>
                     <p class="text-muted mb-0 small">Catálogo interactivo con alérgenos y disponibilidad en tiempo real.</p>
                 </div>
-                <!-- Buscador con autocompletado en tiempo real -->
                 <div class="position-relative" style="min-width: 280px;">
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
@@ -308,7 +610,6 @@
 
             <!-- TARJETAS DE PRODUCTO (CARDS) -->
             <div class="row g-4" id="cardsContainer">
-                <!-- Card 1 -->
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 product-item" data-category="cafes" data-name="capuchino especial catfe">
                     <div class="card card-catfe h-100 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Capuchino">
@@ -319,11 +620,11 @@
                                     <span class="text-success fw-bold">$8.500</span>
                                 </div>
                                 <span class="badge bg-light text-dark border me-1"><i class="bi bi-egg-fried"></i> Lácteos</span>
-                                <span class="badge badge-goldenrod">Top Seller</span>
+                                <span class="badge badge-goldenrod">Top Vendidos</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
                                 <div class="form-check form-switch mb-0">
-                                    <input class="form-check-input" type="checkbox" checked id="switch1" onchange="showToast('Disponibilidad actualizada en barra', 'success')">
+                                    <input class="form-check-input" type="checkbox" checked id="switch1" onchange="showToast('Disponibilidad actualizada', 'success')">
                                     <label class="form-check-label small" for="switch1">Disponible</label>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalPersonalizar" onclick="abrirModalPersonalizar('Capuchino Especial', 8500)">
@@ -334,7 +635,6 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 product-item" data-category="reposteria" data-name="cheesecake de arandanos">
                     <div class="card card-catfe h-100 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Cheesecake">
@@ -345,7 +645,7 @@
                                     <span class="text-success fw-bold">$12.000</span>
                                 </div>
                                 <span class="badge bg-light text-dark border me-1">Gluten</span>
-                                <span class="badge bg-light text-dark border">Lácteos</span>
+                                <span class="badge badge-goldenrod">Top Vendidos</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
                                 <div class="form-check form-switch mb-0">
@@ -360,7 +660,6 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 product-item" data-category="frias" data-name="matcha frappe felino">
                     <div class="card card-catfe h-100 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Matcha">
@@ -385,7 +684,6 @@
                     </div>
                 </div>
 
-                <!-- Card 4 (Agotado) -->
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 product-item" data-category="desayunos" data-name="croissant frances de almendras">
                     <div class="card card-catfe h-100 overflow-hidden opacity-75">
                         <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" class="card-img-top" style="height: 160px; object-fit: cover; filter: grayscale(80%);" alt="Croissant">
@@ -429,17 +727,16 @@
                 </div>
             </div>
 
-            <!-- Tabla de Datos -->
             <div class="card card-catfe p-0 overflow-hidden mb-3">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 40px;"><input type="checkbox" class="form-check-input" id="checkAll" onclick="toggleAllChecks(this)"></th>
-                                <th>ID <i class="bi bi-arrow-down-up small cursor-pointer" onclick="sortTable(1)"></i></th>
+                                <th>ID</th>
                                 <th>Cliente / Mesa</th>
                                 <th>Fecha & Hora</th>
-                                <th>Total ($) <i class="bi bi-arrow-down-up small cursor-pointer" onclick="sortTable(4)"></i></th>
+                                <th>Total ($)</th>
                                 <th>Estado</th>
                                 <th class="text-end">Acciones</th>
                             </tr>
@@ -469,51 +766,17 @@
                                     <button class="btn btn-sm btn-outline-danger" onclick="confirmarEliminarFila(this)"><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"></td>
-                                <td class="fw-bold">#106</td>
-                                <td>Mesa 5 (Cliente Mostrador)</td>
-                                <td>Hoy 13:50</td>
-                                <td class="fw-bold">$20.500</td>
-                                <td><span class="badge bg-secondary">Entregado</span></td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary" onclick="verDetallePedido(106)"><i class="bi bi-eye"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmarEliminarFila(this)"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"></td>
-                                <td class="fw-bold">#105</td>
-                                <td>Mesa 2 (Sofía Martínez)</td>
-                                <td>Hoy 13:20</td>
-                                <td class="fw-bold">$30.000</td>
-                                <td><span class="badge bg-secondary">Entregado</span></td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary" onclick="verDetallePedido(105)"><i class="bi bi-eye"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="confirmarEliminarFila(this)"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Paginación Inferior Fija -->
                 <div class="d-flex flex-wrap justify-content-between align-items-center p-3 border-top bg-light gap-2">
-                    <div class="d-flex align-items-center gap-2 small text-muted">
-                        Mostrar:
-                        <select class="form-select form-select-sm" style="width: 70px;">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>50</option>
-                        </select>
-                        de 48 registros totales
-                    </div>
+                    <div class="small text-muted">Mostrando 2 de 48 registros</div>
                     <nav>
                         <ul class="pagination pagination-sm mb-0">
                             <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
                             <li class="page-item active"><a class="page-link btn-catfe-primary text-white" href="#">1</a></li>
                             <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
                             <li class="page-item"><a class="page-link text-dark" href="#">»</a></li>
                         </ul>
                     </nav>
@@ -533,7 +796,6 @@
             <div class="card card-catfe p-4 p-md-5">
                 <form id="formProducto" onsubmit="event.preventDefault(); guardarProducto();" novalidate>
                     <div class="row g-4">
-                        <!-- Columna 1 -->
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label fw-semibold small">Nombre del Producto <span class="text-danger">*</span></label>
@@ -564,7 +826,6 @@
                             </div>
                         </div>
 
-                        <!-- Columna 2 -->
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label fw-semibold small">Stock Inicial (Existencias) <span class="text-danger">*</span></label>
@@ -609,7 +870,6 @@
             </div>
 
             <div class="row g-4">
-                <!-- Panel Izquierdo: Datos de la Mesa y Notas -->
                 <div class="col-12 col-lg-5">
                     <div class="card card-catfe p-4 h-100">
                         <h5 class="fw-bold mb-3 border-bottom pb-2">Información de Mesa</h5>
@@ -623,7 +883,6 @@
                             • El cheesecake se sirve al centro para compartir.
                         </div>
 
-                        <!-- Línea de Tiempo (Timeline) -->
                         <h6 class="fw-bold mb-3">Trayecto del Pedido (Timeline):</h6>
                         <ul class="timeline">
                             <li class="timeline-item">
@@ -645,7 +904,6 @@
                     </div>
                 </div>
 
-                <!-- Panel Derecho: Desglose de Productos y Precuenta -->
                 <div class="col-12 col-lg-7">
                     <div class="card card-catfe p-4 h-100 d-flex flex-column justify-content-between">
                         <div>
@@ -710,10 +968,9 @@
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
                 <div>
                     <h2 class="fw-bold mb-1" style="color: var(--color-bark);">Módulo de Reportes & Analítica</h2>
-                    <p class="text-muted mb-0 small">Análisis de productos estrella (*Top Sellers*) y control financiero de mermas.</p>
+                    <p class="text-muted mb-0 small">Análisis de productos estrella (*Top Vendidos*) y control financiero de mermas.</p>
                 </div>
 
-                <!-- Filtros de Fecha + Botones de Descarga PDF / Excel -->
                 <div class="d-flex flex-wrap gap-2">
                     <select class="form-select form-select-sm" style="width: 140px;">
                         <option>Hoy</option>
@@ -730,7 +987,6 @@
                 </div>
             </div>
 
-            <!-- Resúmenes Analíticos de Desperdicios / Mermas -->
             <div class="row g-4 mb-4">
                 <div class="col-12 col-md-6">
                     <div class="card card-catfe p-4 h-100">
@@ -764,7 +1020,7 @@
 
                 <div class="col-12 col-md-6">
                     <div class="card card-catfe p-4 h-100">
-                        <h5 class="fw-bold mb-3" style="color: var(--color-bark);">Ranking de Productos Más Vendidos</h5>
+                        <h5 class="fw-bold mb-3" style="color: var(--color-bark);">Ranking de Top Vendidos</h5>
                         <div class="table-responsive">
                             <table class="table table-sm align-middle">
                                 <thead class="small text-muted">
@@ -814,8 +1070,6 @@
 <!-- ========================================== -->
 <!-- 7. VENTANAS EMERGENTES (MODALES)          -->
 <!-- ========================================== -->
-
-<!-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN -->
 <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content card-catfe">
@@ -834,19 +1088,17 @@
     </div>
 </div>
 
-<!-- MODAL DE PERSONALIZACIÓN DE PEDIDO -->
 <div class="modal fade" id="modalPersonalizar" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content card-catfe">
             <div class="modal-header">
                 <div>
                     <h5 class="modal-title fw-bold" id="modalItemTitle">Personalizar Bebida</h5>
-                    <small class="text-muted" id="modalItemBasePrice">$8.500 COP</small>
+                    <small class="text-muted" id="modalItemBasePrice">$8.500 COP Base</small>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <!-- Tipo de Leche -->
                 <div class="mb-3">
                     <label class="form-label small fw-bold">Tipo de Leche:</label>
                     <select class="form-select form-select-sm">
@@ -856,8 +1108,6 @@
                         <option>Avena (+ $2.000)</option>
                     </select>
                 </div>
-
-                <!-- Nivel de Azúcar -->
                 <div class="mb-3">
                     <label class="form-label small fw-bold">Nivel de Endulzante:</label>
                     <div class="btn-group w-100" role="group">
@@ -869,8 +1119,6 @@
                         <label class="btn btn-outline-secondary btn-sm" for="az3">Sin Azúcar</label>
                     </div>
                 </div>
-
-                <!-- Extras -->
                 <div class="mb-3">
                     <label class="form-label small fw-bold">Adiciones & Extras:</label>
                     <div class="form-check">
@@ -891,7 +1139,6 @@
     </div>
 </div>
 
-<!-- MODAL ACCESO CON PIN (CAJEROS EN TABLET) -->
 <div class="modal fade" id="modalPinLogin" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content card-catfe text-center p-4">
@@ -919,7 +1166,6 @@
 <!-- SCRIPTS JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Inicializar Chart.js en Dashboard
     let chartInstance = null;
     function initChart() {
         if (chartInstance) return;
@@ -932,8 +1178,8 @@
                 datasets: [{
                     label: 'Ventas en COP ($)',
                     data: [45000, 78000, 62000, 95000, 185000, 142000, 60000],
-                    borderColor: '#C05805', // Bronze
-                    backgroundColor: 'rgba(219, 149, 1, 0.15)', // Goldenrod transparente
+                    borderColor: '#C05805',
+                    backgroundColor: 'rgba(219, 149, 1, 0.15)',
                     fill: true,
                     tension: 0.35,
                     borderWidth: 3
@@ -950,19 +1196,10 @@
         });
     }
 
-    // Login & Logout
     function handleLogin() {
-        const email = document.getElementById('loginEmail');
-        const pass = document.getElementById('loginPass');
-        if (!email.value || !pass.value) {
-            email.classList.add('is-invalid');
-            pass.classList.add('is-invalid');
-            showToast('Por favor completa todos los campos', 'danger');
-            return;
-        }
         document.getElementById('screen-login').classList.add('d-none');
         document.getElementById('app-wrapper').classList.remove('d-none');
-        showToast('¡Bienvenido a Cat-fé, Brayan Cuta!', 'success');
+        showToast('¡Bienvenido Administrador Brayan Cuta!', 'success');
         setTimeout(initChart, 200);
     }
 
@@ -972,7 +1209,6 @@
         showToast('Sesión cerrada con éxito', 'info');
     }
 
-    // Toggle Password
     function togglePass() {
         const p = document.getElementById('loginPass');
         const icon = document.getElementById('eyeIcon');
@@ -985,7 +1221,6 @@
         }
     }
 
-    // PIN Pad
     let pinVal = "";
     function pressPin(n) {
         if (pinVal.length < 4) {
@@ -1005,7 +1240,6 @@
         handleLogin();
     }
 
-    // Navegación entre Secciones
     function switchSection(sectionId, element) {
         document.querySelectorAll('.content-section').forEach(s => s.classList.add('d-none'));
         const target = document.getElementById('section-' + sectionId);
@@ -1014,23 +1248,19 @@
         document.querySelectorAll('.catfe-sidebar .nav-link').forEach(l => l.classList.remove('active'));
         if (element && element.classList.contains('nav-link')) element.classList.add('active');
 
-        // Cerrar sidebar en móvil si estaba abierto
-        const sidebar = document.getElementById('sidebarMenu');
-        sidebar.classList.remove('show');
-
         if (sectionId === 'dashboard') initChart();
     }
 
-    function updateMobileNav(element) {
+    function selectMobileItem(element) {
         document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
         element.classList.add('active');
     }
 
-    function toggleSidebar() {
-        document.getElementById('sidebarMenu').classList.toggle('show');
+    function gestionarMesa(numero, nombre, estado) {
+        showToast(`Gestionando ${nombre} (${estado})`, 'info');
+        switchSection('detalle');
     }
 
-    // Filtros del Menú
     function filterCategory(cat, btn) {
         document.querySelectorAll('#pillsCategory button').forEach(b => {
             b.classList.remove('active', 'btn-catfe-primary');
@@ -1056,7 +1286,6 @@
         });
     }
 
-    // Personalización Modal
     function abrirModalPersonalizar(nombre, precio) {
         document.getElementById('modalItemTitle').innerText = 'Personalizar ' + nombre;
         document.getElementById('modalItemBasePrice').innerText = '$' + precio.toLocaleString() + ' COP Base';
@@ -1067,7 +1296,6 @@
         showToast('Bebida personalizada agregada a la mesa', 'success');
     }
 
-    // Ajuste de Valores (+ / -)
     function ajustarValor(id, delta) {
         const input = document.getElementById(id);
         let val = parseInt(input.value) || 0;
@@ -1079,38 +1307,11 @@
         document.getElementById('charCount').innerText = `${textarea.value.length} / 150`;
     }
 
-    // Guardar Producto
     function guardarProducto() {
-        const nombre = document.getElementById('prodNombre');
-        const cat = document.getElementById('prodCategoria');
-        const precio = document.getElementById('prodPrecio');
-        let valid = true;
-
-        if (nombre.value.trim().length < 3) {
-            nombre.classList.add('is-invalid');
-            valid = false;
-        } else nombre.classList.remove('is-invalid');
-
-        if (!cat.value) {
-            cat.classList.add('is-invalid');
-            valid = false;
-        } else cat.classList.remove('is-invalid');
-
-        if (parseInt(precio.value) <= 0) {
-            precio.classList.add('is-invalid');
-            valid = false;
-        } else precio.classList.remove('is-invalid');
-
-        if (valid) {
-            showToast('¡Producto guardado exitosamente en el catálogo!', 'success');
-            document.getElementById('formProducto').reset();
-            switchSection('menu');
-        } else {
-            showToast('Revisa los campos con bordes rojos', 'danger');
-        }
+        showToast('¡Producto guardado exitosamente en el estante de inventario!', 'success');
+        switchSection('inventario');
     }
 
-    // Listados
     let filaAEliminar = null;
     function confirmarEliminarFila(btn) {
         filaAEliminar = btn.closest('tr');
@@ -1139,7 +1340,6 @@
         showToast(`Consultando detalles del pedido #${id}`, 'info');
     }
 
-    // Toasts
     function showToast(msg, type = 'success') {
         const toastEl = document.getElementById('catfeToast');
         document.getElementById('toastMessage').innerText = msg;
