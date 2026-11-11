@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Evidencias Sesión 6: Consultas SQL - Cat-fé (Star-Light)</title>
+    <style>
+        body { font-family: "Segoe UI", Arial, sans-serif; background: #1E1E1E; color: #D4D4D4; margin: 25px; line-height: 1.5; }
+        h1, h2, h3 { color: #DB9501; font-family: "Consolas", monospace; margin-top: 20px; }
+        .meta-header { background: #252526; padding: 15px; border-left: 5px solid #C05805; border-radius: 4px; margin-bottom: 25px; }
+        .sql-box { background: #2D2D2D; border: 1px solid #3E3E42; border-radius: 6px; padding: 12px; margin-bottom: 20px; }
+        .query-title { color: #4EC9B0; font-weight: bold; font-size: 14px; margin-bottom: 6px; }
+        .code-snippet { background: #1E1E1E; color: #CE9178; padding: 8px 12px; border-radius: 4px; font-family: "Consolas", monospace; font-size: 12px; white-space: pre-wrap; border: 1px solid #333; margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; font-family: "Consolas", monospace; }
+        th, td { border: 1px solid #3E3E42; padding: 6px 10px; text-align: left; }
+        th { background: #333337; color: #569CD6; font-weight: bold; }
+        tr:nth-child(even) { background: #252526; }
+        .badge { background: #6E6702; color: #FFF; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+    </style>
+</head>
+<body>
+
+    <div class="meta-header">
+        <h2 style="margin:0 0 6px 0; color:#FFF;">SENA ADSO · SESIÓN 6: SQL APLICADO A TU NEGOCIO</h2>
+        <div><strong>Aprendiz:</strong> Brayan Santiago Cuta &nbsp;|&nbsp; <strong>Instructora:</strong> Joan Castillo Celis</div>
+        <div><strong>Proyecto:</strong> Sistema Inteligente de Gestión <strong>Cat-fé</strong> (Cafetería Star-Light)</div>
+        <div><strong>Base de Datos:</strong> MySQL / MariaDB (<code>catfe_db</code>) &nbsp;|&nbsp; <strong>Archivo:</strong> <code>database/consultas.sql</code></div>
+        <div style="margin-top:8px; color:#DB9501;"><strong>Palabras clave cubiertas (11/11):</strong> SELECT, INSERT, UPDATE, DELETE, WHERE, ORDER BY, JOIN, COUNT, SUM, GROUP BY, HAVING</div>
+    </div><div class="sql-box">
+        <div class="query-title">CONSULTA 1: Menú Activo con Filtro y Orden (SELECT, WHERE, ORDER BY)</div>
+        <div class="code-snippet">SELECT p.codigo, p.nombre, p.precio_venta, p.stock, c.nombre AS categoria
+FROM producto p
+INNER JOIN categoria c ON c.id = p.categoria_id
+WHERE p.stock > 0 AND p.activo = 1
+ORDER BY p.precio_venta DESC;</div>
+        <table>
+            <tr><th>codigo</th><th>nombre</th><th>precio_venta</th><th>stock</th><th>categoria</th></tr><tr><td>REP-001</td><td>Cheesecake de Arándanos Silvestres</td><td>$ 12000.00</td><td>12</td><td>Repostería Artesanal</td></tr><tr><td>REP-002</td><td>Torta Húmeda de Chocolate 70%</td><td>$ 11500.00</td><td>9</td><td>Repostería Artesanal</td></tr><tr><td>FRI-001</td><td>Matcha Latte Helado Felino</td><td>$ 10500.00</td><td>20</td><td>Bebidas Frías & Frappés</td></tr><tr><td>CAF-002</td><td>Latte Vainilla Star-Light</td><td>$ 9000.00</td><td>28</td><td>Cafés de Especialidad</td></tr><tr><td>CAF-001</td><td>Capuchino Especial Cat-fé</td><td>$ 8500.00</td><td>35</td><td>Cafés de Especialidad</td></tr><tr><td>CAF-003</td><td>Espresso Doble Origen Huila</td><td>$ 6000.00</td><td>50</td><td>Cafés de Especialidad</td></tr><tr><td>INS-001</td><td>Leche de Almendras Orgánica 1L</td><td>$ 4000.00</td><td>6</td><td>Insumos & Leches Vegetales</td></tr></table></div><div class="sql-box">
+        <div class="query-title">CONSULTA 2: Pantalla de Despacho Comandas en Barra (JOIN múltiple, WHERE, ORDER BY)</div>
+        <div class="code-snippet">SELECT p.id AS comanda_id, m.numero AS mesa, u.nombre_completo AS mesero, pr.nombre AS producto, dp.cantidad, dp.notas_preparacion, p.estado
+FROM pedido p
+JOIN mesa m ON m.id = p.mesa_id
+JOIN usuario u ON u.id = p.usuario_id
+JOIN detalle_pedido dp ON dp.pedido_id = p.id
+JOIN producto pr ON pr.id = dp.producto_id
+WHERE p.estado IN ('PENDIENTE', 'EN_PREPARACION')
+ORDER BY p.fecha_hora ASC;</div>
+        <table>
+            <tr><th>comanda_id</th><th>mesa</th><th>mesero</th><th>producto</th><th>cantidad</th><th>notas_preparacion</th><th>estado</th></tr><tr><td>#4</td><td>Mesa 2</td><td>Laura Valentina Gómez</td><td>Capuchino Especial Cat-fé</td><td>1</td><td>Leche de almendras</td><td><span class='badge'>EN_PREPARACION</span></td></tr><tr><td>#4</td><td>Mesa 2</td><td>Laura Valentina Gómez</td><td>Latte Vainilla Star-Light</td><td>1</td><td>—</td><td><span class='badge'>EN_PREPARACION</span></td></tr><tr><td>#6</td><td>Mesa 6</td><td>Laura Valentina Gómez</td><td>Espresso Doble Origen Huila</td><td>1</td><td>En taza precalentada</td><td><span class='badge'>PENDIENTE</span></td></tr><tr><td>#6</td><td>Mesa 6</td><td>Laura Valentina Gómez</td><td>Capuchino Especial Cat-fé</td><td>2</td><td>Arte latte gatito</td><td><span class='badge'>PENDIENTE</span></td></tr></table></div><div class="sql-box">
+        <div class="query-title">CONSULTA 3: MÓDULO INNOVADOR 1 - Ranking Top Vendidos (GROUP BY, SUM, COUNT, ORDER BY)</div>
+        <div class="code-snippet">SELECT pr.codigo, pr.nombre AS producto, c.nombre AS categoria, SUM(dp.cantidad) AS total_unidades_vendidas, COUNT(DISTINCT dp.pedido_id) AS veces_ordenado, SUM(dp.subtotal) AS ingresos_totales_cop
+FROM detalle_pedido dp
+JOIN producto pr ON pr.id = dp.producto_id
+JOIN categoria c ON c.id = pr.categoria_id
+JOIN pedido p ON p.id = dp.pedido_id
+WHERE p.estado != 'ANULADO'
+GROUP BY pr.id, pr.codigo, pr.nombre, c.nombre
+ORDER BY total_unidades_vendidas DESC;</div>
+        <table>
+            <tr><th>codigo</th><th>producto</th><th>categoria</th><th>total_unidades_vendidas</th><th>veces_ordenado</th><th>ingresos_totales_cop</th></tr><tr><td>CAF-001</td><td>Capuchino Especial Cat-fé</td><td>Cafés de Especialidad</td><td>6</td><td>4</td><td>$ 51,000.00</td></tr><tr><td>CAF-002</td><td>Latte Vainilla Star-Light</td><td>Cafés de Especialidad</td><td>3</td><td>2</td><td>$ 27,000.00</td></tr><tr><td>REP-001</td><td>Cheesecake de Arándanos Silvestres</td><td>Repostería Artesanal</td><td>3</td><td>3</td><td>$ 36,000.00</td></tr><tr><td>FRI-001</td><td>Matcha Latte Helado Felino</td><td>Bebidas Frías & Frappés</td><td>2</td><td>1</td><td>$ 21,000.00</td></tr><tr><td>CAF-003</td><td>Espresso Doble Origen Huila</td><td>Cafés de Especialidad</td><td>1</td><td>1</td><td>$ 6,000.00</td></tr><tr><td>REP-002</td><td>Torta Húmeda de Chocolate 70%</td><td>Repostería Artesanal</td><td>1</td><td>1</td><td>$ 11,500.00</td></tr></table></div><div class="sql-box">
+        <div class="query-title">CONSULTA 4: MÓDULO INNOVADOR 2 - Reporte Costo Financiero de Mermas (GROUP BY, SUM, COUNT)</div>
+        <div class="code-snippet">SELECT me.motivo AS causal_desperdicio, COUNT(me.id) AS cantidad_incidentes, SUM(me.cantidad) AS total_unidades_desechadas, SUM(me.perdida_total) AS costo_financiero_perdida_cop
+FROM merma me
+GROUP BY me.motivo
+ORDER BY costo_financiero_perdida_cop DESC;</div>
+        <table>
+            <tr><th>causal_desperdicio</th><th>cantidad_incidentes</th><th>total_unidades_desechadas</th><th>costo_financiero_perdida_cop</th></tr><tr><td>CADUCIDAD</td><td>2</td><td>5</td><td>-$ 33,000.00 COP</td></tr><tr><td>ERROR_PREPARACION</td><td>2</td><td>3</td><td>-$ 9,400.00 COP</td></tr><tr><td>ACCIDENTE_DETERIORO</td><td>1</td><td>1</td><td>-$ 5,200.00 COP</td></tr></table></div><div class="sql-box">
+        <div class="query-title">CONSULTA 5: Filtrado de Productos Estrella con Ventas Acumuladas > 2 (HAVING, GROUP BY, SUM)</div>
+        <div class="code-snippet">SELECT pr.nombre AS producto, SUM(dp.cantidad) AS unidades_vendidas, SUM(dp.subtotal) AS total_recaudado
+FROM detalle_pedido dp
+JOIN producto pr ON pr.id = dp.producto_id
+GROUP BY pr.id, pr.nombre
+HAVING SUM(dp.cantidad) > 2
+ORDER BY unidades_vendidas DESC;</div>
+        <table>
+            <tr><th>producto</th><th>unidades_vendidas</th><th>total_recaudado</th></tr><tr><td>Capuchino Especial Cat-fé</td><td>6</td><td>$ 51,000.00</td></tr><tr><td>Cheesecake de Arándanos Silvestres</td><td>3</td><td>$ 36,000.00</td></tr><tr><td>Latte Vainilla Star-Light</td><td>3</td><td>$ 27,000.00</td></tr></table></div></body></html>
