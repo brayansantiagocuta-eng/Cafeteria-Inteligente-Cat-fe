@@ -1351,6 +1351,31 @@
         const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
         toast.show();
     }
+
+    // Modo de captura automática por parámetros URL (?view=dashboard, ?view=mesas, etc.)
+    window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const view = params.get('view');
+        if (view && view !== 'login') {
+            document.getElementById('screen-login').classList.add('d-none');
+            document.getElementById('app-wrapper').classList.remove('d-none');
+            if (view === 'modal') {
+                switchSection('menu');
+                const modal = new bootstrap.Modal(document.getElementById('modalPersonalizar'));
+                modal.show();
+            } else if (view === 'error') {
+                switchSection('formularios');
+                document.getElementById('prodNombre').classList.add('is-invalid');
+                document.getElementById('prodCategoria').classList.add('is-invalid');
+                showToast('Error: Completa los campos obligatorios marcados en rojo', 'danger');
+            } else if (view === 'mobile') {
+                switchSection('mesas');
+            } else {
+                switchSection(view);
+            }
+            setTimeout(initChart, 100);
+        }
+    });
 </script>
 </body>
 </html>
